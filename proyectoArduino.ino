@@ -27,6 +27,7 @@ LiquidCrystal_I2C lcd(0x27, 2, 1, 0, 4, 5, 6, 7);
 //Crea objeto mfrc522 enviando pines de slave select y reset
 MFRC522 mfrc522(SS_PIN, RST_PIN);
 
+String usuarios[9];
 //Crea array para almacenar el UID leido
 byte LecturaUID[7];
 //Crea un array Aux para almacenar nuevas tarjetas
@@ -98,7 +99,7 @@ void loop(){
         lcd.setCursor(0, 1);
         lcd.print("nueva tarjeta");
 
-        delay(500);
+        delay(750);
 
         /*if(!mfrc522.PICC_IsNewCardPresent() || !mfrc522.PICC_ReadCardSerial()){
           delay(500);
