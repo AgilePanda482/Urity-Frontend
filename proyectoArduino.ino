@@ -20,6 +20,7 @@ SoftwareSerial miBT(5, 6);
 //Variables 
 Servo puerta;
 char dato;
+int contador = 0;
 //String inString = "";
 
 //Creamos un objeto en la pantalla
@@ -93,9 +94,22 @@ void loop(){
       puerta.write(0);
     }else if(dato == '5'){
       while(!mfrc522.PICC_IsNewCardPresent() || !mfrc522.PICC_ReadCardSerial()){
+        if(contador > 8)
+        {
+          lcd.clear();
+          lcd.setCursor(0,0);
+          lcd.print("Limite");
+          lcd.setCursor(0, 1);
+          lcd.print("Alcanzado");
+
+          delay(2500);
+          
+          return;
+        }
+        
         lcd.clear();
         lcd.setCursor(0,0);
-        lcd.print("Inserte una");
+        lcd.print("Inserte una"); 
         lcd.setCursor(0, 1);
         lcd.print("nueva tarjeta");
 
@@ -115,7 +129,10 @@ void loop(){
       lcd.print("Leyendo...");
 
       //Funcion la cual almacena el UID leido 
-      almacenarUID(UsuarioAux);
+      //usuarios[contador] = String(mfrc522.uid.uidByte);
+      
+      //almacenarUID(UsuarioAux);
+      //Serial.println(usuarios[contador]);
 
       lcd.clear();
       lcd.setCursor(0,0);
@@ -129,7 +146,9 @@ void loop(){
       lcd.setCursor(0, 0);
       lcd.print("Bienvenido!");
       lcd.setCursor(0, 1);
-      lcd.print("Pase su tarjeta"); 
+      lcd.print("Pase su tarjeta");
+
+      contador += 1;
 
     }else{
       dato = ' ';
@@ -312,7 +331,7 @@ void almacenarUID(byte *variableUID){
     // almacena en array el byte del UID leido
     variableUID[i] = mfrc522.uid.uidByte[i];
 
-    //numTargeta += String(mfrc522.uid.uidByte[i]);    //Dieguiño      
+    //usuarios[0] += String(mfrc522.uid.uidByte[i]);    //Dieguiño      
   }
 
   // imprime un espacio de tabulacion  
