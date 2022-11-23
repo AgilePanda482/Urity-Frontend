@@ -28,13 +28,29 @@ LiquidCrystal_I2C lcd(0x27, 2, 1, 0, 4, 5, 6, 7);
 //Crea objeto mfrc522 enviando pines de slave select y reset
 MFRC522 mfrc522(SS_PIN, RST_PIN);
 
-String usuarios[9];
+String usuarios[9],
 //Crea array para almacenar el UID leido
-byte LecturaUID[7];
+LecturaUID,
 //Crea un array Aux para almacenar nuevas tarjetas
-byte UsuarioAux[7];
+UsuarioAux;
+
+const String Usuario1 = "043E41E2356D80",
+// UID de llavero leido en programa 2
+Usuario2 = "043A3382366D80",
+//UID de llavero leido en programa 3
+Usuario3 = "041A0F42366D80",
+//UID de llavero leido en programa 4
+Usuario4 = "043C6D12366D80",
+//UID de llavero leido en programa 5
+Usuario5 = "043C23D2356D80",
+//UID de llavero leido en programa 6
+Usuario6 = "040A549A366D80",
+//UID de llavero leido en programa 7
+Usuario7 = "042D201A366D80";
+
+
 // UID de tarjeta leido en programa 1
-byte Usuario1[7] = {0x04, 0x3E, 0x41, 0xE2, 0x35, 0x6D, 0x80};
+/*byte Usuario1[7] = {0x04, 0x3E, 0x41, 0xE2, 0x35, 0x6D, 0x80};
 // UID de llavero leido en programa 2
 byte Usuario2[7] = {0x04, 0x3A, 0x33, 0x82, 0x36, 0x6D, 0x80};
 //UID de llavero leido en programa 3
@@ -46,7 +62,7 @@ byte Usuario5[7] = {0x04, 0x3C, 0x23, 0xD2, 0x35, 0x6D, 0x80};
 //UID de llavero leido en programa 6
 byte Usuario6[7] = {0x04, 0x0A, 0x54, 0x9A, 0x36, 0x6D, 0x80};
 //UID de llavero leido en programa 7
-byte Usuario7[7] = {0x04, 0x2D, 0x20, 0x1A, 0x36, 0x6D, 0x80};
+byte Usuario7[7] = {0x04, 0x2D, 0x20, 0x1A, 0x36, 0x6D, 0x80};*/
 
 void setup(){
 
@@ -82,18 +98,23 @@ void loop(){
   //Iniciamos el cursor de la pantalla en 0,0
   lcd.setCursor(0, 0);
 
-  if(Serial.available() > 0 || miBT.available() > 0) {
+  if(Serial.available() > 0 || miBT.available() > 0){
 
     dato = miBT.read();
 
-    if(dato == '2'){
-      //Serial.println("Entre 2");
-      puerta.write(180);
-    }else if(dato == '1'){
-      //Serial.println("Entre 1");
-      puerta.write(0);
-    }else if(dato == '5'){
-      while(!mfrc522.PICC_IsNewCardPresent() || !mfrc522.PICC_ReadCardSerial()){
+    switch (dato){
+      case '1':
+        //Cerramos el servo
+        puerta.write(0);
+      break;
+
+      case '2':
+        //Abrimos el servo
+        puerta.write(180);
+      break;
+
+      case '5':
+        while(!mfrc522.PICC_IsNewCardPresent() || !mfrc522.PICC_ReadCardSerial()){
         if(contador > 8)
         {
           lcd.clear();
@@ -120,7 +141,6 @@ void loop(){
         }else{
           break;        
         }*/
-
       }
       
       Serial.println("USUARIO AUXILIAR");
@@ -131,7 +151,7 @@ void loop(){
       //Funcion la cual almacena el UID leido 
       //usuarios[contador] = String(mfrc522.uid.uidByte);
       
-      almacenarUID(UsuarioAux);
+      UsuarioAux = almacenarUID(UsuarioAux);
       //Serial.println(usuarios[contador]);
 
       lcd.clear();
@@ -149,43 +169,17 @@ void loop(){
       lcd.print("Pase su tarjeta");
 
       contador += 1;
+      break;
 
-    }else{
-      dato = ' ';
-      return;
+      default:
+        dato = ' ';
+        return;
+      break;
     }
     dato = ' ';
-
-      //Codigo ya no indispensable pero me da miedo borrarlo -Sebas
-      /*do {
-        if(usuarios[i] == "") {
-            usuarios[i] = numTargeta;
-            op = 1;
-            i += 1;
-        }
-      }while(op==1);
-          op=0;  
-    }  */
-
-      //int inChar = Serial.read();
-      /*if(inChar != '\n') {
-          inString += (char)inChar;
-          //pe += (char)dato;
-        } else {
-          //Serial.println(dato);
-          miBT.println(inString);
-          if(inString == "open" || dato == '2'){
-              puerta.write(180);
-            }
-          if(inString == "close" || dato == '1'){
-              puerta.write(0);
-            }
-          inString = "";
-          //pe = "";
-        }
-      */
   }
-  //dato = ' ';
+  
+
     
   // si no hay una tarjeta presente
   if ( ! mfrc522.PICC_IsNewCardPresent()){
@@ -214,7 +208,7 @@ void loop(){
 
   //Por lo visto, el RFID lee los numeros en decimales pero despues los pasa a hexadecimal ~Sebas
   //Funcion la cual almacena el UID leido    
-  almacenarUID(LecturaUID);
+  LecturaUID = almacenarUID(LecturaUID);
   
   //Comparamos si el UID leido es igual al usuario1 e imprimimos
   if(comparaUID(LecturaUID, Usuario1)){
@@ -285,17 +279,13 @@ void loop(){
 
 
 // funcion comparaUID
-boolean comparaUID(byte lectura[],byte usuario[]){
-  // bucle recorre de a un byte por vez el UID
-  for (byte i=0; i < mfrc522.uid.size; i++){
-    // si byte de UID leido es distinto a usuario
-    if(lectura[i] != usuario[i]){     
-      return false;
-    }
+boolean comparaUID(String lectura, String usuario){
+  if(lectura == usuario){
+    return true;
   }
-  
-  // si los 4 bytes coinciden retorna verdadero
-  return true;
+  else{
+    return false;
+  }
 }
 
 //Funcion que imprime acceso autorizado
@@ -306,10 +296,9 @@ void imprimirAutorizado(){
   lcd.setCursor(0,1);
   lcd.print("Autorizado");
   puerta.write(180);
-  //numTargeta = "";
 }
 
-void almacenarUID(byte *variableUID){
+String almacenarUID(String variableUID){
   // muestra texto UID en el monitor:
   Serial.print("\n");
   Serial.print("UID:");
@@ -328,12 +317,13 @@ void almacenarUID(byte *variableUID){
     //imprime el byte del UID leido en hexadecimal
     Serial.print(mfrc522.uid.uidByte[i], HEX);
 
-    // almacena en array el byte del UID leido
-    variableUID[i] = mfrc522.uid.uidByte[i];
+    // almacena en String el byte del UID leido
+    variableUID += String(mfrc522.uid.uidByte[i], HEX);
 
-    //usuarios[0] += String(mfrc522.uid.uidByte[i]);    //Dieguiño      
+    //usuarios[0] += String(mfrc522.uid.uidByte[i], HEX);    //Dieguiño      
   }
-
   // imprime un espacio de tabulacion  
   Serial.print("\t");
+
+  return variableUID;
 }
