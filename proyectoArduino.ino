@@ -131,7 +131,7 @@ void loop(){
       //Funcion la cual almacena el UID leido 
       //usuarios[contador] = String(mfrc522.uid.uidByte);
       
-      //almacenarUID(UsuarioAux);
+      almacenarUID(UsuarioAux);
       //Serial.println(usuarios[contador]);
 
       lcd.clear();
