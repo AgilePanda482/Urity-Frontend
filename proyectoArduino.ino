@@ -151,7 +151,7 @@ void loop(){
       //Funcion la cual almacena el UID leido 
       //usuarios[contador] = String(mfrc522.uid.uidByte);
       
-      UsuarioAux = almacenarUID(UsuarioAux);
+      usuarios[contador] = almacenarUID(UsuarioAux);
       //Serial.println(usuarios[contador]);
 
       lcd.clear();
@@ -236,7 +236,7 @@ void loop(){
   }else if(comparaUID(LecturaUID, Usuario7)){
     Serial.println("Bienvenido Moreno");
     imprimirAutorizado();
-  }else if(comparaUID(LecturaUID, UsuarioAux)){
+  }else if(comparaUID(LecturaUID, usuarios[contador])){ //<--- Fix this with a for
     Serial.println("Ahuevo");
     imprimirAutorizado();
   }else{  
