@@ -21,6 +21,8 @@ SoftwareSerial miBT(5, 6);
 Servo puerta;
 char dato;
 int contador = 0;
+int abrirPuerta = 115;
+int cerrarPuerta = 0;
 //String inString = "";
 
 //Creamos un objeto en la pantalla
@@ -32,7 +34,7 @@ String usuarios[9],
 //Crea array para almacenar el UID leido
 LecturaUID,
 //Crea un array Aux para almacenar nuevas tarjetas
-UsuarioAux;
+usuarioAux;
 
 const String Usuario1 = "043E41E2356D80",
 // UID de llavero leido en programa 2
@@ -82,7 +84,7 @@ void setup(){
   miBT.begin(38400);
 
   //Ponemos el servo en una pocicion de cerrado y Limpiamos la pantalla ademas escribimos texto
-  puerta.write(0);
+  puerta.write(cerrarPuerta);
   lcd.clear();
   lcd.setCursor(0, 0);
   lcd.print("Bienvenido!");
@@ -105,12 +107,12 @@ void loop(){
     switch (dato){
       case '1':
         //Cerramos el servo
-        puerta.write(0);
+        puerta.write(cerrarPuerta);
       break;
 
       case '2':
         //Abrimos el servo
-        puerta.write(180);
+        puerta.write(abrirPuerta);
       break;
 
       case '5':
@@ -151,8 +153,10 @@ void loop(){
       //Funcion la cual almacena el UID leido 
       //usuarios[contador] = String(mfrc522.uid.uidByte);
       
-      usuarios[contador] = almacenarUID(UsuarioAux);
+      usuarioAux = almacenarUID(usuarioAux);
       //Serial.println(usuarios[contador]);
+
+      usuarios[contador] = usuarioAux;
 
       lcd.clear();
       lcd.setCursor(0,0);
@@ -160,7 +164,9 @@ void loop(){
       lcd.setCursor(0,1);
       lcd.print("Correctamente!");
 
-      delay(2500);
+      delay(750);
+
+
 
       lcd.clear();
       lcd.setCursor(0, 0);
@@ -209,9 +215,15 @@ void loop(){
   //Por lo visto, el RFID lee los numeros en decimales pero despues los pasa a hexadecimal ~Sebas
   //Funcion la cual almacena el UID leido    
   LecturaUID = almacenarUID(LecturaUID);
+
+  Serial.println(LecturaUID);
   
   //Comparamos si el UID leido es igual al usuario1 e imprimimos
-  if(comparaUID(LecturaUID, Usuario1)){
+  /*if()
+  {
+    
+  }
+  else*/ if(comparaUID(LecturaUID, Usuario1)){
     //Esto se imprime al monitor
     Serial.println("Bienvenido Sebastian!");
     //llamamos a una funcion
@@ -250,10 +262,12 @@ void loop(){
     lcd.print("Autorizado");
     //numTargeta = "";      
   }
-    
+  
+
   //Esperamos 4seg
   delay(3400);
-  puerta.write(0);
+  LecturaUID = "";
+  puerta.write(cerrarPuerta);
   lcd.clear();
   lcd.setCursor(0, 0);
   lcd.print("Bienvenido!");
@@ -295,7 +309,7 @@ void imprimirAutorizado(){
   lcd.print("Acceso");
   lcd.setCursor(0,1);
   lcd.print("Autorizado");
-  puerta.write(180);
+  puerta.write(abrirPuerta);
 }
 
 String almacenarUID(String variableUID){
@@ -309,6 +323,8 @@ String almacenarUID(String variableUID){
     if(mfrc522.uid.uidByte[i] < 0x10){        
       //imprime espacio en blanco y numero cero
       Serial.print(" 0"); 
+      variableUID += "0";
+      
     }else{
       //imprime un espacio en blanco        
       Serial.print(" ");
@@ -325,5 +341,17 @@ String almacenarUID(String variableUID){
   // imprime un espacio de tabulacion  
   Serial.print("\t");
 
+  variableUID.toUpperCase();
+
   return variableUID;
 }
+
+
+
+/*boolean tarjetasRpt(String usr[])
+{
+  for(byte i = 0; i < 9; i++)
+  {
+    if(usr)
+  }
+}*/
