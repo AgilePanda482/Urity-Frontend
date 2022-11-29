@@ -31,7 +31,7 @@ LiquidCrystal_I2C lcd(0x27, 2, 1, 0, 4, 5, 6, 7);
 //Crea objeto mfrc522 enviando pines de slave select y reset
 MFRC522 mfrc522(SS_PIN, RST_PIN);
 
-String usuarios[9],
+String usuarios[9] = {"0"},
 //Crea array para almacenar el UID leido
 LecturaUID,
 //Crea un array Aux para almacenar nuevas tarjetas
@@ -169,6 +169,7 @@ void loop(){
         lcd.print("Bienvenido!");
         lcd.setCursor(0, 1);
         lcd.print("Pase su tarjeta");
+        usuarioAux = "";
 
         contador += 1;
       break;
@@ -240,7 +241,7 @@ void loop(){
   }else if(comparaUID(LecturaUID, Usuario7)){
     Serial.println("Bienvenido Moreno");
     imprimirAutorizado();
-  }else if(nombresupercreativo(tamanioArray, LecturaUID, usuarios)){ //<--- Fix this with a for
+  }else if(nombresupercreativo(tamanioArray, LecturaUID)){ //<--- Fix this with a for
     Serial.println("Ahuevo");
     imprimirAutorizado();
   }else{  
@@ -272,9 +273,13 @@ void loop(){
 }
 
 // funcion comparaUID
-boolean comparaUID(String lectura, String usuario){
-  if(lectura == usuario){
+boolean comparaUID(String lectura, String usr){
+  Serial.println(lectura);
+  Serial.println(usr);
+  if(lectura == usr){
     return true;
+  }else if(usr == NULL){
+    return false;
   }
   else{
     return false;
@@ -324,11 +329,14 @@ String almacenarUID(String variableUID){
   return variableUID;
 }
 
-boolean nombresupercreativo(int tamanio, String lectura, String *usr){
+boolean nombresupercreativo(int tamanio, String lectura){
 
   for(byte i = 0; i < tamanio; i++){
 
-    usuarioAux = usr[i];
+    usuarioAux = usuarios[i];
+
+    Serial.println("\n");
+    Serial.println(usuarioAux);
 
     if(comparaUID(LecturaUID, usuarioAux));
     {
