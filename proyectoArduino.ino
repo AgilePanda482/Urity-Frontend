@@ -17,10 +17,10 @@ const int rs = 0, en = 1, d4 = 5, d5 = 4, d6 = 3, d7 = 2;
 //pin 10 como RX, pin 11 como TX
 SoftwareSerial miBT(5, 6);
 
-//Variables 
+//Variables
 Servo puerta;
 char dato;
-int contador = 0;
+int contador = 6;
 int abrirPuerta = 115;
 int cerrarPuerta = 0;
 int tamanioArray;
@@ -31,26 +31,12 @@ LiquidCrystal_I2C lcd(0x27, 2, 1, 0, 4, 5, 6, 7);
 //Crea objeto mfrc522 enviando pines de slave select y reset
 MFRC522 mfrc522(SS_PIN, RST_PIN);
 
-String usuarios[9] = {"0"},
+String usuarios[20] = {"043E41E2356D80", "043A3382366D80","043C23D2356D80",
+"040A549A366D80","040A549A366D80"},
 //Crea array para almacenar el UID leido
 LecturaUID,
 //Crea un array Aux para almacenar nuevas tarjetas
 usuarioAux;
-
-const String Usuario1 = "043E41E2356D80",
-// UID de llavero leido en programa 2
-Usuario2 = "043A3382366D80",
-//UID de llavero leido en programa 3
-Usuario3 = "041A0F42366D80",
-//UID de llavero leido en programa 4
-Usuario4 = "043C6D12366D80",
-//UID de llavero leido en programa 5
-Usuario5 = "043C23D2356D80",
-//UID de llavero leido en programa 6
-Usuario6 = "040A549A366D80",
-//UID de llavero leido en programa 7
-Usuario7 = "042D201A366D80";
-
 
 // UID de tarjeta leido en programa 1
 /*byte Usuario1[7] = {0x04, 0x3E, 0x41, 0xE2, 0x35, 0x6D, 0x80};
@@ -77,7 +63,7 @@ void setup(){
   Serial.begin(9600);
   // inicializa bus SPI
   SPI.begin();
-  // inicializa modulo lector        
+  // inicializa modulo lector
   mfrc522.PCD_Init();
   //Inicializamos la pantalla
   lcd.begin(16,2);
@@ -90,16 +76,17 @@ void setup(){
   lcd.setCursor(0, 0);
   lcd.print("Bienvenido!");
   lcd.setCursor(0, 1);
-  lcd.print("Pase su tarjeta"); 
+  lcd.print("Pase su tarjeta");
 
   //Imprimimos en el monitor listo
   Serial.println("Listo");
 }
 
 void loop(){
-  
+
   //Iniciamos el cursor de la pantalla en 0,0
   lcd.setCursor(0, 0);
+  tamanioArray = sizeof(usuarios) / sizeof(usuarios[0]);
 
   if(Serial.available() > 0 || miBT.available() > 0){
 
@@ -118,7 +105,7 @@ void loop(){
 
       case '5':
         while(!mfrc522.PICC_IsNewCardPresent() || !mfrc522.PICC_ReadCardSerial()){
-          if(contador > 8)
+          if(contador > 50)
           {
             lcd.clear();
             lcd.setCursor(0,0);
@@ -127,33 +114,56 @@ void loop(){
             lcd.print("Alcanzado");
 
             delay(2500);
-            
+
             return;
           }
-          
+
           lcd.clear();
           lcd.setCursor(0,0);
-          lcd.print("Inserte una"); 
+          lcd.print("Inserte una");
           lcd.setCursor(0, 1);
           lcd.print("nueva tarjeta");
 
           delay(850);
 
-        }
-      
+          //idea para solucionar un bug, escrito el 17 de enero del 2023
+        }/*else{
+          Serial.println("USUARIO AUXILIAR");
+          lcd.clear();
+          lcd.setCursor(0,0);
+          lcd.print("Leyendo...");
+
+          //Funcion la cual almacena el UID leido
+          usuarioAux = almacenarUID(usuarioAux);
+          usuarios[contador] = usuarioAux;
+          lcd.clear();
+          lcd.setCursor(0,0);
+          lcd.print("Tarjeta Leida");
+          lcd.setCursor(0,1);
+          lcd.print("Correctamente!");
+
+          delay(2500);
+
+
+
+          lcd.clear();
+          lcd.setCursor(0, 0);
+          lcd.print("Bienvenido!");
+          lcd.setCursor(0, 1);
+          lcd.print("Pase su tarjeta");
+          usuarioAux = "";
+
+          contador += 1;
+        }*/
+
         Serial.println("USUARIO AUXILIAR");
         lcd.clear();
         lcd.setCursor(0,0);
         lcd.print("Leyendo...");
 
-        //Funcion la cual almacena el UID leido 
-        //usuarios[contador] = String(mfrc522.uid.uidByte);
-      
+        //Funcion la cual almacena el UID leido
         usuarioAux = almacenarUID(usuarioAux);
-        //Serial.println(usuarios[contador]);
-
         usuarios[contador] = usuarioAux;
-
         lcd.clear();
         lcd.setCursor(0,0);
         lcd.print("Tarjeta Leida");
@@ -173,6 +183,45 @@ void loop(){
 
         contador += 1;
       break;
+      case '8':
+      while(!mfrc522.PICC_IsNewCardPresent() || !mfrc522.PICC_ReadCardSerial()){
+        lcd.clear();
+        lcd.setCursor(0,0);
+        lcd.print("Inserte la");
+        lcd.setCursor(0,1);
+        lcd.print("tarjeta");
+
+        delay(850);
+      }
+
+      lcd.clear();
+      lcd.setCursor(0,0);
+      lcd.print("Leyendo...");
+      usuarioAux = almacenarUID(usuarioAux);
+
+      if(eliminarTarjetas(tamanioArray, usuarioAux)){
+        lcd.clear();
+        lcd.setCursor(0,0);
+        lcd.print("Tarjeta");
+        lcd.setCursor(0,1);
+        lcd.print("Eliminada!");
+        delay(2000);
+      }else{
+        lcd.clear();
+        lcd.setCursor(0,0);
+        lcd.print("Tarjeta NO");
+        lcd.setCursor(0,1);
+        lcd.print("Encontrada");
+        delay(2000);
+      }
+
+      lcd.clear();
+      lcd.setCursor(0, 0);
+      lcd.print("Bienvenido!");
+      lcd.setCursor(0, 1);
+      lcd.print("Pase su tarjeta");
+      usuarioAux = "";
+      break;
 
       default:
         dato = ' ';
@@ -181,18 +230,18 @@ void loop(){
     }
     dato = ' ';
   }
-  
 
-    
+
+
   // si no hay una tarjeta presente
   if ( ! mfrc522.PICC_IsNewCardPresent()){
     // retorna al loop esperando por una tarjeta
     return;
   }
-  
+
   // si no puede obtener datos de la tarjeta
-  if ( ! mfrc522.PICC_ReadCardSerial()){   
-    lcd.clear();     
+  if ( ! mfrc522.PICC_ReadCardSerial()){
+    lcd.clear();
     lcd.setCursor(0, 0);
     lcd.print("Leyendo, No");
     lcd.setCursor(0, 1);
@@ -202,49 +251,21 @@ void loop(){
 
     lcd.print("Bienvenido!");
     lcd.setCursor(0, 1);
-    lcd.print("Pase su tarjeta");             
+    lcd.print("Pase su tarjeta");
     // retorna al loop esperando por otra tarjeta
-    return;         
+    return;
   }
-  
-  tamanioArray = sizeof(usuarios) / sizeof(usuarios[0]);
 
   //Por lo visto, el RFID lee los numeros en decimales pero despues los pasa a hexadecimal ~Sebas
-  //Funcion la cual almacena el UID leido    
+  //Funcion la cual almacena el UID leido
   LecturaUID = almacenarUID(LecturaUID);
 
   Serial.println(LecturaUID);
-  
-  //Comparamos si el UID leido es igual al usuario1 e imprimimos
-  if(comparaUID(LecturaUID, Usuario1)){
-    //Esto se imprime al monitor
-    Serial.println("Bienvenido Sebastian!");
-    //llamamos a una funcion
+
+  if(comparaUID(tamanioArray, LecturaUID)){
+    Serial.println("OK");
     imprimirAutorizado();
-    //hacemos exactamente lo mismo con el usuario
-  }else if(comparaUID(LecturaUID, Usuario2)){
-    Serial.println("Bienvenido Rincon");
-    imprimirAutorizado();
-  }else if(comparaUID(LecturaUID, Usuario3)){
-    Serial.println("Bienvenido Arantza");
-    imprimirAutorizado();
-  }else if(comparaUID(LecturaUID, Usuario4)){
-    Serial.println("Bienvenido Cesar");
-    imprimirAutorizado();
-  }else if(comparaUID(LecturaUID, Usuario5)){
-    Serial.println("Bienvenido Paquin");
-    imprimirAutorizado();
-  }else if(comparaUID(LecturaUID, Usuario6)){
-    Serial.println("Bienvenido Diego");
-    //Serial.print(numTargeta);
-    imprimirAutorizado();
-  }else if(comparaUID(LecturaUID, Usuario7)){
-    Serial.println("Bienvenido Moreno");
-    imprimirAutorizado();
-  }else if(nombresupercreativo(tamanioArray, LecturaUID)){ //<--- Fix this with a for
-    Serial.println("Ahuevo");
-    imprimirAutorizado();
-  }else{  
+  }else{
     //sino imprime en el monitor no te conozco  y en la pantalla "Acceso no autorizado"
     lcd.clear();
     Serial.println("No te conozco ");
@@ -253,9 +274,9 @@ void loop(){
     lcd.print("Acceso NO");
     lcd.setCursor(0,1);
     lcd.print("Autorizado");
-    //numTargeta = "";      
+    //numTargeta = "";
   }
-  
+
 
   //Esperamos 4seg
   delay(3400);
@@ -269,21 +290,7 @@ void loop(){
 
   // detiene comunicacion con tarjeta
   mfrc522.PICC_HaltA();
-  
-}
 
-// funcion comparaUID
-boolean comparaUID(String lectura, String usr){
-  Serial.println(lectura);
-  Serial.println(usr);
-  if(lectura == usr){
-    return true;
-  }else if(usr == NULL){
-    return false;
-  }
-  else{
-    return false;
-  }
 }
 
 //Funcion que imprime acceso autorizado
@@ -304,13 +311,13 @@ String almacenarUID(String variableUID){
   // bucle recorre de a un byte por vez el UID (Esto lo imprime al monitor)
   for(byte i = 0; i < mfrc522.uid.size; i++){
     //si el byte leido es menor a 0x10
-    if(mfrc522.uid.uidByte[i] < 0x10){        
+    if(mfrc522.uid.uidByte[i] < 0x10){
       //imprime espacio en blanco y numero cero
-      Serial.print(" 0"); 
+      Serial.print(" 0");
       variableUID += "0";
-      
+
     }else{
-      //imprime un espacio en blanco        
+      //imprime un espacio en blanco
       Serial.print(" ");
     }
 
@@ -319,9 +326,9 @@ String almacenarUID(String variableUID){
 
     // almacena en String el byte del UID leido
     variableUID += String(mfrc522.uid.uidByte[i], HEX);
-  
+
   }
-  // imprime un espacio de tabulacion  
+  // imprime un espacio de tabulacion
   Serial.print("\t");
 
   variableUID.toUpperCase();
@@ -329,30 +336,36 @@ String almacenarUID(String variableUID){
   return variableUID;
 }
 
-boolean nombresupercreativo(int tamanio, String lectura){
+boolean comparaUID(int tamanio, String lectura){
 
   for(byte i = 0; i < tamanio; i++){
 
-    usuarioAux = usuarios[i];
+    Serial.println(usuarios[i]);
 
-    Serial.println("\n");
-    Serial.println(usuarioAux);
-
-    if(comparaUID(LecturaUID, usuarioAux));
-    {
+    if(usuarios[i] == NULL){
+      Serial.println("Entre 1");
+      return false;
+    }
+    else if(usuarios[i] == lectura){
       return true;
     }
-
   }
 
+  Serial.println("entre 2");
   return false;
 
 }
 
-/*boolean tarjetasRpt(String usr[])
-{
-  for(byte i = 0; i < 9; i++)
-  {
-    if(usr)
+boolean eliminarTarjetas(int tamanio, String lectura){
+
+  for(byte i = 0; i < tamanioArray; i++){
+
+    Serial.println(usuarios[i]);
+    if(lectura == usuarios[i]){
+      usuarios[i] = "";
+      return true;
+    }
   }
-}*/
+
+  return false;
+}
