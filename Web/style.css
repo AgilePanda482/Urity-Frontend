@@ -1,0 +1,64 @@
+:root {
+    --Background-black: hsl(0, 0%, 0%);
+}
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--Background-black);
+    color: white;
+    font-family: 'Hanken Grotesk', sans-serif;
+    font-size: 16px;
+}
+
+
+.container {
+    background-color: var(--Pale-blue);
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+
+.main {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-between;
+    align-items: center;
+    height: 70vh;
+
+    background-color: black;
+    border-radius: 1em;
+    padding: 1em;
+}
+
+
+/*                  VERSION MOBILE       */
+
+/*           LOGO          */
+.main-logo {
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+}
+.main-logo img {
+    height: 13em;
+}
+.main-logo h1 {
+    font-size: 2.6em;
+    font-family: 'Merriweather', serif;
+}
+
+
+
+
+.main-checking {
+}
+.main-checking p {
+    font-size: .9em;
+}
