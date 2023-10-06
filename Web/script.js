@@ -11,9 +11,9 @@ source.addEventListener("error", function(events){
     console.log("Eventos Desconectados")
 })
 
-source.addEventListener("uidUser", function(events){
+source.addEventListener("message", function(events){
     try {
-        let uidUser = JSON.parse(events.data)
+        const uidUser = JSON.parse(events.data)
         handleJSONMessage(uidUser)
     }catch (error){
         console.error("Error al analizar el JSON")
@@ -29,12 +29,10 @@ source.addEventListener("uidUser", function(events){
 // Función para manejar mensajes JSON
 function handleJSONMessage(uidUser) {
     // Mostrar el objeto JSON en la consola
-    uidUser = 'asdfwewr'
-    console.log(uidUser)
-    
+ 
     const mainDataP = document.getElementById('main-data-id')
     mainDataP.style.display = 'block'
-    mainDataP.innerHTML = uidUser
+    mainDataP.innerHTML = uidUser.rfid_tag_id
 }
 
 
