@@ -31,3 +31,17 @@ function handleJSONMessage(message) {
     // Mostrar el objeto JSON en la consola
     console.log(message);
 }
+
+
+const logoImg = document.getElementById('logo-img')
+const verification = document.getElementById('verification')
+const logoLetters = document.getElementById('logo-letters')
+const msgLector = document.getElementById('msg-lector')
+
+verification.addEventListener("click", function() {
+
+    logoImg.style.height = '8em'
+    logoLetters.style.display = 'none'
+    verification.style.display = 'none'
+    msgLector.style.display = 'block'    
+})
