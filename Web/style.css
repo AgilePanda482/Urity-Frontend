@@ -64,8 +64,16 @@ body {
 }
 
 
+/* MAIN DATA */
+.main-data {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-between;
+}
 
-
+.main-data p {
+  display: none;
+}
 
 /*    CHECKING       */
 .main-checking button {

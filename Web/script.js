@@ -11,10 +11,10 @@ source.addEventListener("error", function(events){
     console.log("Eventos Desconectados")
 })
 
-source.addEventListener("message", function(events){
+source.addEventListener("uidUser", function(events){
     try {
-        const message = JSON.parse(events.data)
-        handleJSONMessage(message)
+        let uidUser = JSON.parse(events.data)
+        handleJSONMessage(uidUser)
     }catch (error){
         console.error("Error al analizar el JSON")
     }
@@ -27,9 +27,14 @@ source.addEventListener("message", function(events){
 }*/
 
 // Función para manejar mensajes JSON
-function handleJSONMessage(message) {
+function handleJSONMessage(uidUser) {
     // Mostrar el objeto JSON en la consola
-    console.log(message);
+    uidUser = 'asdfwewr'
+    console.log(uidUser)
+    
+    const mainDataP = document.getElementById('main-data-id')
+    mainDataP.style.display = 'block'
+    mainDataP.innerHTML = uidUser
 }
 
 
@@ -45,3 +50,4 @@ verification.addEventListener("click", function() {
     verification.style.display = 'none'
     msgLector.style.display = 'block'    
 })
+ 
