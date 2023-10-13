@@ -12,6 +12,7 @@ WiFiMulti wifiMulti;
 
 const uint32_t TiempoEsperaWifi = 5000;
 String lecturaUID = "";
+bool rfidStatus = false;
 
 MFRC522 mfrc522(SS_PIN, RST_PIN);
 AsyncWebServer servidor(80);
@@ -43,13 +44,49 @@ void setup() {
 
   servidor.addHandler(&eventos);
 
+//Activamos la pagina web
   servidor.on("/", HTTP_GET, [](AsyncWebServerRequest *request) {
-  Serial.println("Requesting index page...");
-  request->send(200, "text/html", pagina);
+    Serial.println("Requesting index page...");
+    request->send(200, "text/html", pagina);
   });
 
+//Estamos al pendiente si JavaScript nos envia un JSON
+  servidor.on("/data", HTTP_POST, [](AsyncWebServerRequest *request){
+    StaticJsonDocument<1024> doc;
+    String message;
+    String json = request->getParam("plain")->value();
+    
+    // Parsea el cuerpo de la solicitud como JSON
+    //DynamicJsonDocument doc(1024);
+    deserializeJson(doc, json);
+
+    DeserializationError error = deserializeJson(doc, json);
+
+    // Verificar errores de análisis
+    if (error) {
+        Serial.print(F("Error al analizar el JSON: "));
+        Serial.println(error.c_str());
+        return;
+      }
+    
+    // Accede a los datos en el objeto JSON
+    rfidStatus = doc["enable"];
+    
+    // Haz algo con los datos aquí...
+    
+    //message = "Datos recibidos con éxito";
+    //message = "No se recibieron datos";
+    
+
+    //request->send(200, "text/plain", message);
+    Serial.print(rfidStatus);
+  });
+
+
   SPI.begin();
+
   mfrc522.PCD_Init();
+  mfrc522.PCD_SoftPowerDown();
 
   servidor.begin();
   Serial.println("Servidor HTTP iniciado");
@@ -57,6 +94,13 @@ void setup() {
 
 
 void loop() {
+  if(!rfidStatus){
+    return;
+  }
+
+  Serial.print(rfidStatus);
+
+  mfrc522.PCD_SoftPowerUp();
 
   if ( ! mfrc522.PICC_IsNewCardPresent()){
     return;
