@@ -5,7 +5,7 @@
 #include <WiFiMulti.h>
 #include <ArduinoJson.h>
 WiFiMulti wifiMulti;
-#include "data.h"
+#include "page.h"
 
 //Pines para el lector RFID
 #define RST_PIN  27
