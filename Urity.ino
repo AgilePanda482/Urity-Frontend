@@ -7,6 +7,7 @@
 WiFiMulti wifiMulti;
 #include "data.h"
 
+//Pines para el lector RFID
 #define RST_PIN  27
 #define SS_PIN  5
 
@@ -18,8 +19,9 @@ MFRC522 mfrc522(SS_PIN, RST_PIN);
 AsyncWebServer servidor(80);
 AsyncEventSource eventos("/events");
 
-void mensajeBase();
+//Funcion para leer el UID de la tarjeta
 String almacenarUID(String variableUID);
+//Enviar JSON hacia Javascript
 void sendMessage();
 
 void setup() {
@@ -44,44 +46,29 @@ void setup() {
 
   servidor.addHandler(&eventos);
 
-//Activamos la pagina web
+  //Activamos la pagina web
   servidor.on("/", HTTP_GET, [](AsyncWebServerRequest *request) {
     Serial.println("Requesting index page...");
     request->send(200, "text/html", pagina);
   });
 
-//Estamos al pendiente si JavaScript nos envia un JSON
-  servidor.on("/data", HTTP_POST, [](AsyncWebServerRequest *request){
-    StaticJsonDocument<1024> doc;
-    String message;
-    String json = request->getParam("plain")->value();
-    
-    // Parsea el cuerpo de la solicitud como JSON
-    //DynamicJsonDocument doc(1024);
-    deserializeJson(doc, json);
+  //Estamos al pendiente si JavaScript nos envia un JSON
+  servidor.onRequestBody( [](AsyncWebServerRequest *request, uint8_t *data, size_t len, size_t index, size_t total){
+    if ((request->url() == "/data") && (request->method() == HTTP_POST)){
+      const size_t        JSON_DOC_SIZE   = 512U;
+      DynamicJsonDocument jsonDoc(JSON_DOC_SIZE);
 
-    DeserializationError error = deserializeJson(doc, json);
+      if (DeserializationError::Ok == deserializeJson(jsonDoc, (const char*)data)){
+        //JsonObject obj = jsonDoc.as<JsonObject>()
+        //Serial.println(obj["enable"].as<String>().c_str());
 
-    // Verificar errores de análisis
-    if (error) {
-        Serial.print(F("Error al analizar el JSON: "));
-        Serial.println(error.c_str());
-        return;
+        rfidStatus = jsonDoc["enable"];
+        request->send(200, "application/json", "{ \"status\": 0 }");
+      }else {
+        request->send(404, "application/json", "{ \"status\": 1 }");
       }
-    
-    // Accede a los datos en el objeto JSON
-    rfidStatus = doc["enable"];
-    
-    // Haz algo con los datos aquí...
-    
-    //message = "Datos recibidos con éxito";
-    //message = "No se recibieron datos";
-    
-
-    //request->send(200, "text/plain", message);
-    Serial.print(rfidStatus);
+    }
   });
-
 
   SPI.begin();
 
@@ -94,39 +81,18 @@ void setup() {
 
 
 void loop() {
-  if(!rfidStatus){
+  if ( !mfrc522.PICC_IsNewCardPresent() || !mfrc522.PICC_ReadCardSerial() || !rfidStatus){
     return;
   }
-
-  Serial.print(rfidStatus);
 
   mfrc522.PCD_SoftPowerUp();
-
-  if ( ! mfrc522.PICC_IsNewCardPresent()){
-    return;
-  }
   
-  if ( ! mfrc522.PICC_ReadCardSerial()){
-    return;
-  }
-
   lecturaUID = almacenarUID(lecturaUID);
 
   sendMessage();
 
   lecturaUID = "";
 
-  /*Serial.print("UID:");
-  for (byte i = 0; i < mfrc522.uid.size; i++) {
-    if (mfrc522.uid.uidByte[i] < 0x10){
-      Serial.print(" 0");			
-      }
-      else{
-      Serial.print(" ");
-      }
-    Serial.print(mfrc522.uid.uidByte[i], HEX);
-  }*/
-  Serial.println();
   mfrc522.PICC_HaltA(); 
 }
 
@@ -163,24 +129,13 @@ String almacenarUID(String variableUID){
 
 void sendMessage()
 {
-
   Serial.println("\n");
+  Serial.println("Se enviara un JSON a Javascript con la siguiente información: ");
   Serial.println(lecturaUID);
   // Declare a buffer to hold the result
   char output[128];
   StaticJsonDocument<64> doc;
 
-  //bool isValid = false;
-  /*for (size_t i = 0; i < 2; i++)
-  {
-    if (validRFID[i].equals(lecturaUID))
-    {
-      isValid = true;
-      break;
-    }
-  }*/
-
-  //doc["status"] = isValid;
   doc["rfid_tag_id"] = lecturaUID;
 
   serializeJson(doc, output);

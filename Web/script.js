@@ -24,13 +24,13 @@ verification.addEventListener("click", function() {
         },
         body: JSON.stringify(rfidStatus),
     })
-    /*.then((response) => response.json())
-      .then((rfidStatus) => {
+    .then((response) => response.json())
+        .then((rfidStatus) => {
         console.log('Éxito:', rfidStatus);
     })
     .catch((error) => {
         console.error('Error:', error);
-    })*/
+    })
 })
 
 // Configurar manejadores de eventos
