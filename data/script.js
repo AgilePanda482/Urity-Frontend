@@ -6,20 +6,23 @@ const spinner = document.getElementById("spinner");
 
 const mainDataP = document.getElementById('main-data-id')
 
-const getUID = () => {
-    return new Promise((resolve, reject) => {
+// function getUID () {
+//     return new Promise((resolve, reject) => {
 
-        setTimeout(() => {
-            if (uidUser =! '') {
-                resolve (showID())
-            }
-        }, "10000")
+//         setTimeout(() => {
+//             if (uidUser =! '') {
+//                 resolve (showID())
+//             }
 
-        reject(backDesing())
-    })
-}
+//             backDesing()
+//         }, "10000")
+
+//         reject()
+//     })
+// }
 
 // Crear una instancia de EventSource con la ruta "/events"
+
 let source = new EventSource("/events")
 let rfidStatus = {
     enable: false
@@ -84,20 +87,26 @@ source.addEventListener("message", function(events){
 // Función para manejar mensajes JSON
 function handleJSONMessage(uidUser) {
     // Mostrar el objeto JSON en la consola
- 
-    hideSpinner()
-    mainDataP.style.display = 'block'
-    mainDataP.innerHTML = uidUser
+
+    hideSpinner() //Ocultamos el spinner de carga
+    // mainDataP.style.display = 'block' //Mostramos el elemento HTML
+    // mainDataP.innerHTML = uidUser //Mandar dato por consola (solo para pruebas)
+    let ID = uidUser  
+    msgLector.innerHTML = `ID DE LA TARJETA: ${ID}` //Cambiamos el mensaje de abajo
+    // mainDataP.innerHTML = uidUser.rfid_tag_id   //Dato por JSON (Uso para traer el dato por ESP32)
+    
+    //Una vez mostrado el ID en pantalla, habrá una espera de 10 seg.
+    //Despues de eso el ID se ocultará y el diseño de entrada volvera a aparecer
     setTimeout(() => {
-        hideID()
-        backDesing()
-    }, "25000");
+        hideID() //Ocultamos el ID
+        backDesing() //Volvemos al diseño de inicio
+    }, "15000"); 
 }
 
-verification.addEventListener("click", function() {
 
-    showSpinner()
-    verificationDataDesing()
+
+//Evento a través de "TOQUE PARA VERIFICAR"
+verification.addEventListener("click", function() {
 
     rfidStatus.enable = true
 
@@ -116,6 +125,15 @@ verification.addEventListener("click", function() {
         console.error('Error:', error);
     })
 
+
+    showSpinner() //Se muestra el spinner
+    verificationDataDesing() //Se hace la animación para esperar dato
+    
+    //El programa esperará 30 segundos en espera de la tarjeta
+    //Si el programa no detecta tarjeta después de ese timepo se volverá al diseño de inicio
+    setTimeout(() => {
+        backDesing() //Vuelve al diseño de inicio
+    }, "30000");
 })
 
 //¿¿¿??? "Evento personalizado"
