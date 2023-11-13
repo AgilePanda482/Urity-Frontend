@@ -17,12 +17,14 @@
         <header class="header">
             <div class="header__container">
                 
-                <div class="header__container__menu-icon">
+                <button class="header__container__menu-icon" id="menu_despegable_icon">
                     <i class="fa-solid fa-bars-staggered blur-in"></i>
-                </div>
+                </button>
 
                 <div class="header__container__logo">
-                    <img class="logo__img blur-in" src="https://lh3.googleusercontent.com/pw/ADCreHfKiwfJhkUEUcVNkqO8YePm0GOuJb6HBpdNJio3c0OCbwKv-SJO0qikebLoO17Z0zNiI5X-feRsjSM-SI1bMmguJlrxuhJKRgFEWp3CPQUCB72wKjot1GAbofwOgoJvQR9d9RI0WjoLojkI0J9QnNQq=w500-h500-s-no?authuser=0".0 alt="Urity" >
+                    <!-- <img class="logo__img blur-in" src="https://lh3.googleusercontent.com/pw/ADCreHfKiwfJhkUEUcVNkqO8YePm0GOuJb6HBpdNJio3c0OCbwKv-SJO0qikebLoO17Z0zNiI5X-feRsjSM-SI1bMmguJlrxuhJKRgFEWp3CPQUCB72wKjot1GAbofwOgoJvQR9d9RI0WjoLojkI0J9QnNQq=w500-h500-s-no?authuser=0".0 alt="Urity" > -->
+                    <img class="logo__img blur-in" src="./urity-logo-removebg-preview.png".0 alt="Urity" >
+
                     <h1 class="logo__letters blur-in" id="logo-letters">Urity</h1>
                 </div>
 
@@ -43,11 +45,21 @@
                     <i class="fa-solid fa-circle-user blur-in nav__icon"></i>
                 </div>
 
+                <div class="header__container__menu-despegable" id="menu_despegable">
+                    <button class="header__container__menu-despegable-button" id="menu_despegable_icon-close">
+                       <i class="fa-solid fa-x faster-blur-in close"></i>
+                    </button>
+
+                    <ul class="header__container__menu-despegable-ul faster-blur-in">
+                        <a href="./verification/verification-index.html"><li>VERIFICACIÓN</li></a>
+                        <a href="#"><li>BASE DE DATOS</li></a>
+                        <a href="#"><li>USUARIOS</li></a>
+                    </ul>
+                </div>
+
             </div>
         </header>
     </main>
-</body>
-</html>
 
-<!-- <i class="fa-regular fa-circle-user"></i> -->
-<!-- <i class="fa-solid fa-circle-user"></i> -->
+    <script src="./script.js"></script>
+</body>

@@ -1,7 +1,3 @@
-:root {
-    --Background-black: hsl(0, 0%, 0%);
-}
-
 * {
   box-sizing: border-box;
   margin: 0;
@@ -9,7 +5,7 @@
 }
   
 body {
-  background-color: var(--Background-black);
+  background-color: rgb(0, 0, 0);
   font-family: 'Hanken Grotesk', sans-serif;
   font-size: 16px;
 }
@@ -19,6 +15,7 @@ body {
 ul {  list-style: none;}
 a { text-decoration: none;  color: white;  font-size: 0.9em;}
 .blur-in {  animation:blur-in 0.9s linear both}
+.faster-blur-in {  animation:blur-in 0.5s linear both}
 
 
 
@@ -28,19 +25,18 @@ a { text-decoration: none;  color: white;  font-size: 0.9em;}
   flex-flow: column wrap;
   justify-content: center;
   align-items: center;
-  
-  /* background-color: antiquewhite; */
 }
 
 .header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin: 1em 0;
+    position: fixed;
+    top: 0;
     width: 1200px;
 
-    /* background-color: rgb(136, 96, 96); */
-    color: white;
+    background-color: rgb(0, 0, 0);
+    backdrop-filter: blur(15em);
 }
 
 .header__container {
@@ -49,6 +45,7 @@ a { text-decoration: none;  color: white;  font-size: 0.9em;}
     align-items: center;
     justify-content: space-between;
     width: 100%;
+
 }
 
 
@@ -71,6 +68,7 @@ a { text-decoration: none;  color: white;  font-size: 0.9em;}
   } 
   .header__container .logo__letters {
     font-family: 'Merriweather', serif;
+    color: white;
   }
 
 /* MENU-DESKTOP */
@@ -115,9 +113,10 @@ a { text-decoration: none;  color: white;  font-size: 0.9em;}
 
 /* MOBILE-PROFILE-ICON */
 
-.header__container__profile {
+.header__container__profile, .header__container__menu-despegable {
   display: none;
 }
+
 
 
 
@@ -129,27 +128,42 @@ a { text-decoration: none;  color: white;  font-size: 0.9em;}
 @media (max-width: 576px) {
   
   .header {
-    padding: 0 1.5em;
+    padding: .5em 2em;
     width: 100%;
+  
+    color: white;
   }
 
-
   .header__container__menu-icon {
-      display: flex;
-  } .header__container__menu-icon i {
-      font-size: 1.8em;
+    display: block;
+    background-color: transparent;
+    border-color: transparent;
+    width: 3em;
+    height: 1em;
+    font-size: 1em;
+    color: white;
+  } 
+    .header__container__menu-icon i {
+      font-size: 1.1em;
     }
+    
 
 
   .header__container__logo {
       display: flex;
+  }
+    .header__container .logo__img {
+      height: 2em;
+    } 
+    .header__container .logo__letters {
+      font-size: 1.3em;
     }
 
 
   .header__container__profile {
     display: flex;
   } .header__container__profile i{
-      font-size: 2.1em;
+      font-size: 1.4em;
     }
 
     
@@ -163,6 +177,53 @@ a { text-decoration: none;  color: white;  font-size: 0.9em;}
     display: none;
   }
 
+  section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .header__container__menu-despegable {
+    display: flex;
+    flex-flow: column wrap;
+    position: absolute;
+    top: 0em;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    padding: 0em 1em;
+
+    background-color: rgba(7, 7, 7, 0.995);
+
+    transform: translate(-100em);
+    transition: all ease-in-out .3s;
+  }
+    
+    .header__container__menu-despegable-button {
+      width: 3em;
+      height: 3em;
+
+      background-color: transparent;
+      border-color: transparent;
+      color: white;
+      font-size: 1.1em;
+    }
+    .header__container__menu-despegable-icon i.close {
+      display: flex;
+      font-size: 1.1em;
+    }
+    .header__container__menu-despegable ul {
+      margin: 0.5em 0;
+      padding: 0 2em;
+      height: 18vh;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      font-size: 1.5em;
+    }
+
 }
 
 @media (min-width: 768px) {  }
@@ -174,6 +235,14 @@ a { text-decoration: none;  color: white;  font-size: 0.9em;}
 @media (min-width: 1400px) {}
 
 @keyframes blur-in {
+  0% {
+    filter:blur(12px);
+    opacity:0}
+  100% {
+    filter:blur(0);
+    opacity:1}
+}
+@keyframes faster-blur-in {
   0% {
     filter:blur(12px);
     opacity:0}
