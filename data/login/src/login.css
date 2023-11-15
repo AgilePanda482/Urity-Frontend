@@ -1,1 +1,107 @@
-/*# sourceMappingURL=login.css.map */
+:root {
+  --Light-red: hsl(0, 100%, 67%);
+  --Orangey-yellow: hsl(39, 100%, 56%);
+  --Green-teal: hsl(166, 100%, 37%);
+  --Cobalt-blue: hsl(234, 85%, 45%);
+  --Light-slate-blue: hsl(252, 100%, 67%);
+  --Light-royal-blue: hsl(241, 81%, 54%);
+  --Violet-blue: hsla(256, 72%, 46%, 1);
+  --Persian-blue: hsla(241, 72%, 46%, 0);
+  --White: hsl(0, 0%, 100%);
+  --Pale-blue: hsl(221, 100%, 96%);
+  --Light-lavender: hsl(241, 100%, 89%);
+  --Dark-gray-blue: hsl(224, 30%, 27%);
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+span {
+  color: var(--Dark-gray-blue);
+}
+
+body {
+  font-size: 18px;
+  font-family: "Hanken Grotesk", sans-serif;
+}
+
+.container {
+  background-color: rgb(0, 0, 0);
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgb(0, 0, 0);
+  width: 100%;
+  height: 100vh;
+  border-radius: 0.7em;
+  overflow: hidden;
+}
+.main__left {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 100%;
+  width: 100%;
+}
+.main__left__img {
+  height: 12em;
+  background-color: black; /* Color de fondo oscuro */
+}
+.main__right {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.main__right__h3 {
+  font-size: 1.5em;
+  color: white;
+  text-align: center;
+  margin-bottom: 0.2em;
+}
+.main__right__data {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.5em;
+}
+.main__right__data form {
+  display: flex;
+  flex-direction: column;
+}
+.main__right__data label {
+  margin-bottom: 0.2em;
+  font-size: 1em;
+  color: white;
+}
+.main__right__data input[type=text],
+.main__right__data input[type=number],
+.main__right__data input[type=email],
+.main__right__data input[type=password],
+.main__right__data input[type=submit] {
+  padding: 8px;
+  margin-bottom: 0.5em;
+  border-radius: 3px;
+  border: 1px solid #a0a0a0;
+  font-size: 0.8em;
+  background-color: #303030;
+}
+.main__right__data input[type=submit] {
+  background-color: var(--Dark-gray-blue);
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-bottom: 0;
+  margin-top: 0.5em;
+  font-size: 1em;
+  border-radius: 0.6em;
+}
+.main__right__data input[type=submit]:hover {
+  background-color: var(--Light-royal-blue);
+}/*# sourceMappingURL=login.css.map */
