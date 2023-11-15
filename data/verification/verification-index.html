@@ -12,42 +12,43 @@
 
     <link href="verification-style.css" rel="stylesheet" type="text/css">
 </head>
+
 <body>
     <div class="container">    
       <main class="main">
-        
-        <div class="main-back">
-          <a class="main-back-link" href="../index.html">
-            <button class="main-back-button">
-              <i class="fa-solid fa-arrow-left"></i><span>VOLVER</span>
-            </button>
-          </a>
+
+        <div class="main-back blur-in">
+          <div class="main-back-container">
+            <a class="main-back-link" href="../index.html">
+              <button class="main-back-button"><i class="fa-solid fa-arrow-left"></i><span>VOLVER</span></button>
+            </a>
+          </div>
         </div>   
 
         <div class="main-logo">
-            
-          
             <img class="blur-in" id="logo-img" src="https://lh3.googleusercontent.com/pw/ADCreHfKiwfJhkUEUcVNkqO8YePm0GOuJb6HBpdNJio3c0OCbwKv-SJO0qikebLoO17Z0zNiI5X-feRsjSM-SI1bMmguJlrxuhJKRgFEWp3CPQUCB72wKjot1GAbofwOgoJvQR9d9RI0WjoLojkI0J9QnNQq=w500-h500-s-no?authuser=0" alt="Urity">
             <h1 class="main-logo-letters blur-in" id="logo-letters">Urity</h1>
         </div>
 
         <div class="main-data">
-          <!-- <div class="main-data-spinned"></div> -->
-          <p class="main-data-id" id="main-data-id"></p>
-          <div class="spinner" id="spinner"></div>
-          <!-- <i class="fa-regular fa-circle-check check"></i> -->
+          <div class="main-data-container">
+            <p class="main-data-id" id="main-data-id"></p>
+            <div class="spinner" id="spinner"></div>
+          </div>
         </div>
 
-        <div class="main-checking">        
-          <div class="main-checking-btn">
-            <button class="main-checking-letters blur-in" id="verification">TOQUE PARA VERIFICAR.</button>
+        <div class="main-checking">  
+          <div class="main-checking-container">
+            <div class="main-checking-btn">
+              <button class="main-checking-letters blur-in" id="verification">TOQUE PARA VERIFICAR.</button>
+            </div>
+            <p class="msg-lector blur-in" id="msg-lector"></p>
           </div>
-          <p class="msg-lector blur-in" id="msg-lector"></p>
         </div>
 
       </main>                         
     </div>
 
-    <script src="./verification-script.js"></script>
+  <script src="./verification-script.js"></script>
 </body>
 </html>
