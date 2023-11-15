@@ -1,0 +1,157 @@
+:root {
+  --Background-black: hsl(0, 0%, 0%);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--Background-black);
+  color: white;
+  font-family: "Hanken Grotesk", sans-serif;
+  font-size: 16px;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+.blur-in {
+  animation: blur-in 0.9s linear both;
+}
+
+@keyframes blur-in {
+  0% {
+    filter: blur(12px);
+    opacity: 0;
+  }
+  100% {
+    filter: blur(0);
+    opacity: 1;
+  }
+}
+.spinner {
+  display: none;
+  border: 2px solid rgb(31, 31, 31);
+  border-radius: 50%;
+  border-top: 2px solid #ffffff;
+  border-right: 2px solid #ffffff;
+  width: 30px;
+  height: 30px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.main {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-between;
+  min-height: 89vh;
+}
+.main__back {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+}
+.main__back__container {
+  display: flex;
+  width: 100%;
+  padding: 0.5em;
+  justify-content: flex-start;
+}
+.main__back__container button {
+  display: flex;
+  align-items: baseline;
+  background-color: transparent;
+  width: 5.5em;
+  height: 1.5em;
+  font-size: 1em;
+  color: white;
+  border-color: transparent;
+}
+.main__back__container button i {
+  padding-right: 0.5em;
+}
+.main__logo {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  text-align: center;
+}
+.main__logo img {
+  height: 15em;
+  transition: all ease 1s;
+}
+.main__logo h1 {
+  font-size: 2.6em;
+  font-family: "Merriweather", serif;
+  transition: all ease 1s;
+}
+.main__data {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+}
+.main__data__container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 0.5em;
+}
+.main__data__container p {
+  display: none;
+}
+.main__checking {
+  display: flex;
+  width: 100%;
+  margin: 1.5em auto;
+}
+.main__checking__container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 0.5em;
+}
+.main__checking__container button {
+  background-color: transparent;
+  font-size: 1em;
+  color: white;
+  border-color: transparent;
+}
+
+@media (min-width: 767.98px) {
+  a {
+    cursor: pointer;
+  }
+  .main {
+    min-height: 100vh;
+    padding: 0 20%;
+  }
+  .main__back {
+    padding: 2em 0;
+  }
+  .main__checking {
+    margin: 1.5em auto;
+  }
+  .main__checking__container button, .main__checking__container p {
+    margin: 2em 0;
+  }
+}/*# sourceMappingURL=verification-style.css.map */

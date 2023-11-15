@@ -38,7 +38,7 @@ function showSpinner() {
 }
 //Animación para esperar el JSON(RFID)
 function verificationDataDesing() {
-    logoImg.style.height = '8em'
+    logoImg.style.height = '10em'
     logoLetters.style.display = 'none'
     verification.style.display = 'none'
     msgLector.style.display = 'block'
