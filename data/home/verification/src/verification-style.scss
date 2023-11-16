@@ -16,6 +16,7 @@ body {
 
 a { text-decoration: none;}
 button {cursor: pointer;}
+
 .blur-in {  animation:blur-in 0.9s linear both}
 @keyframes blur-in {
     0% {
@@ -153,7 +154,11 @@ button {cursor: pointer;}
                 color: white;
                 border-color: transparent;
             }
-
+            p {
+                display: none;
+                
+                transition: all ease 1s;
+            }
         }
     }
 }
@@ -187,7 +192,6 @@ button {cursor: pointer;}
                 button, p {
                     margin: 2em 0;
                 }
-    
             }
         }
     }

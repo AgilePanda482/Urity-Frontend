@@ -136,6 +136,10 @@ button {
   color: white;
   border-color: transparent;
 }
+.main__checking__container p {
+  display: none;
+  transition: all ease 1s;
+}
 
 @media (min-width: 767.98px) {
   a {
