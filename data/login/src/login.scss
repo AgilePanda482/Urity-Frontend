@@ -1,0 +1,132 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+span {
+    color: var(--Dark-gray-blue);
+}
+body {
+    font-size: 16px;
+    font-family: 'Hanken Grotesk', sans-serif;
+    background-color: rgb(0, 0, 0);
+}
+.blur-in {  animation:blur-in 0.9s linear both}
+@keyframes blur-in {
+    0% {
+        filter:blur(12px);
+        opacity:0}
+    100% {
+        filter:blur(0);
+        opacity:1}
+}
+
+.container {
+    background-color: rgb(0, 0, 0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 89vh;
+}
+
+.main {
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    height: 89vh;
+    // padding: 4em 0 0;
+    // gap: 2em;
+
+
+    &__left {
+        display: flex;
+        flex-flow: column wrap;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+
+        height: 50%;
+        width: 100%;
+        
+
+        img {
+            height: 12em;
+            margin: 1em 0 0;
+        }
+        h2 {
+            font-family: 'Merriweather', serif;
+            font-size: 2.9em;
+            color: white;
+        }
+    }
+
+
+    &__right {
+        display: flex;
+        flex-direction: column;
+        
+        height: 50%;
+        width: 100%;
+        padding: 2em 10vh;
+
+        &__h3 {
+            font-size: 1.2em;
+            color: white;
+            text-align: center;
+            margin-bottom: 2em;
+        }
+        &__data {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: .5em;
+
+            form {
+                display: flex;
+                flex-direction: column;
+            }
+            
+            label {
+                margin-bottom: .5em;
+                font-size: 1em;
+                color: white;
+            }
+            
+            input[type="text"],
+            input[type="number"],
+            input[type="email"],
+            input[type="password"],
+            input[type="submit"] {
+                padding: 8px;
+                margin-bottom: .5em;
+                border-radius: 3px;
+                border: 1px solid #a0a0a0;
+                font-size: 1em;
+                background-color: #ffffff;
+            }
+            
+            input[type="submit"] {
+                background-color: black;
+                color: white;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+                margin-bottom: 0;
+                margin-top: .5em;
+                font-size: 1em;
+                border-radius: 3px;
+            }
+            
+            input[type="submit"]:hover {
+                background-color: white;
+                
+            }
+        }                        
+    }    
+}
+
+
+

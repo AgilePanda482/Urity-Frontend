@@ -2,7 +2,7 @@ const logoImg = document.getElementById('logo-img')
 const verification = document.getElementById('verification')
 const logoLetters = document.getElementById('logo-letters')
 const msgLector = document.getElementById('msg-lector')
-const spinner = document.getElementById("spinner");
+const spinner = document.getElementById("spinner")
 
 const mainDataP = document.getElementById('main-data-id')
 
@@ -38,7 +38,7 @@ function showSpinner() {
 }
 //Animación para esperar el JSON(RFID)
 function verificationDataDesing() {
-    logoImg.style.height = '8em'
+    logoImg.style.height = '10em'
     logoLetters.style.display = 'none'
     verification.style.display = 'none'
     msgLector.style.display = 'block'
