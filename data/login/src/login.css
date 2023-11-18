@@ -66,8 +66,8 @@ body {
   display: flex;
   flex-direction: column;
   height: 50%;
-  width: 100%;
-  padding: 2em 10vh;
+  width: 20em;
+  padding: 1em 0;
 }
 .main__right__h3 {
   font-size: 1.2em;
@@ -113,5 +113,6 @@ body {
   border-radius: 3px;
 }
 .main__right__data input[type=submit]:hover {
-  background-color: white;
+  background-color: rgb(63, 63, 63);
+  border-color: rgb(63, 63, 63);
 }/*# sourceMappingURL=login.css.map */
