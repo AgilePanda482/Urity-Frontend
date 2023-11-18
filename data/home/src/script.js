@@ -4,10 +4,12 @@ const menuIconDespegableClose = document.getElementById('menu_despegable_icon-cl
 
 menuIconDespegable.addEventListener('click', function () {
         menuDespegable.style.transform = 'translate(0%)'
+        // despegable.style.transform = 'translate(0%)'
         // menuDespegable.style.transform = 'translate(-100em)'
 })
 
 menuIconDespegableClose.addEventListener('click', function () {
         menuDespegable.style.transform = 'translate(-100%)'
+        // despegable.style.transform = 'translate(-100%)'
         // menuDespegable.style.transform = 'translate(0em)'
 });
