@@ -100,8 +100,7 @@ function handleJSONMessage(uidUser) {
     setTimeout(() => {
         hideID() //Ocultamos el ID
         backDesing() //Volvemos al diseño de inicio
-    }, "15000"); 
-}
+    }, "15000");}
 
 
 
