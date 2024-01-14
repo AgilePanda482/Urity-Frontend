@@ -102,7 +102,6 @@ body {
 }
 .main__right__data input[type=submit]:hover {
   background-color: rgba(29, 156, 240, 0.849);
-  color: white;
 }
 
 @media (min-width: 567.98px) {

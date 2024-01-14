@@ -91,10 +91,11 @@ body {
                 color: white;
                 background-color: transparent;
             }
+            
             input:focus {
                 border-color: rgb(29 155 240);
             }
-
+           
             input[type="submit"] {
                 background-color: rgb(29 155 240);                
                 color: white;
@@ -111,7 +112,6 @@ body {
             
             input[type="submit"]:hover {
                 background-color: rgba(29, 156, 240, 0.849);                
-                color: white;
             }
         }                        
     }    
