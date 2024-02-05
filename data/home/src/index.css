@@ -18,7 +18,9 @@ body {
 .App {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 1em;
+  width: 24em;
+  margin: auto;
 }
 
 a {

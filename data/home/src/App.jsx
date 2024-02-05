@@ -1,43 +1,58 @@
 import './App.css'
-import { TwitterFollowCard } from './TwitterFollowCard.jsx'
+import { Access } from './AccessCard.jsx'
+//import { Access } from './Access.jsx'
 
 const users = [
   {
-    userName: 'midudev',
-    name: 'Miguel Ángel Durán',
-    isFollowing: true
+    name: 'ABRAHAM EMMANUEL GONZALEZ RINCON',
+    code: 221768626,
+    info: '6A1BTW',
+    ubication: true
   },
   {
-    userName: 'pheralb',
-    name: 'Pablo H.',
-    isFollowing: false
+    name: 'DAVID SEBASTIAN RICO VELA',
+    code: 221766666,
+    info: '6A1BTW',
+    ubication: false
   },
   {
-    userName: 'PacoHdezs',
-    name: 'Paco Hdez',
-    isFollowing: true
+    name: 'DIEGO CHAVEZ DORADO',
+    code: 221768626,
+    info: '6A1BTW',
+    ubication: true
   },
   {
-    userName: 'TMChein',
-    name: 'Tomas',
-    isFollowing: false
+    name: 'ARANTZA ORTIZ CABRERA',
+    code: 221766666,
+    info: '6A1BTW',
+    ubication: false
   }
 ]
 
 export function App () {
   return (
+
     <section className='App'>
-      {
-        users.map(({ userName, name, isFollowing }) => (
-          <TwitterFollowCard
-            key={userName}
-            userName={userName}
-            initialIsFollowing={isFollowing}
-          >
-            {name}
-          </TwitterFollowCard>
-        ))
-      }
+        
+        {
+            users.map(({ name, code, info, ubication }) => (
+            <Access
+                key={name}
+                code={code}
+                info={info}
+                ubication={ubication}
+            >
+                {name}
+            </Access>
+            ))
+        }
     </section>
+
   )
 }
+
+function hola (name) {
+  console.log("Hola " + name);
+}
+
+hola('Abraham')
