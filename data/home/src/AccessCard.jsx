@@ -14,14 +14,6 @@ export function Access ({ children, code, info, ubication }) {
     <article className='ac-accessCard'>
       <header className='ac-accessCard-header'>
         <img className='ac-accessCard-avatar' alt='' src={`https://unavatar.io/${code}`}/>
-
-        {/* <div className='ac-accessCard-info'>
-          <p>{children}</p>
-          <div>
-            <span className='ac-accessCard-UserCode'>{code}</span>
-            <span className='ac-accessCard-UserInfo'>{info}</span>
-          </div>
-        </div> */}
       </header>
       
       <div className='ac-accessCard-info'>

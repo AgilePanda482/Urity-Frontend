@@ -1,46 +1,51 @@
-.ac-accessCard { 
+article.ac-accessCard { 
   display: flex;
+  justify-content: center;
   align-items: center;
   color: #fff;
   font-size: .9rem;
-  justify-content: space-between;
+  width: 100%;
+  height: 2.6em;
+  /* background-color: blueviolet; */
 }
 
 
-.ac-accessCard-header {
+header.ac-accessCard-header {
   display: flex;
   align-items: center;
   /* gap: 4trpx */
+  /* background-color: rgb(219, 197, 0); */
+  width: 10%;
+  height: 100%;
 }
-
-.ac-accessCard-avatar {
-  width: 45px;
-  height: 45px;
+img.ac-accessCard-avatar {
+  width: 2.5em;
+  height: 2.5em;
   border-radius: 1000px;
   background-color: #bbb;  
 }
 
 
-.ac-accessCard-info {
+
+
+div.ac-accessCard-info {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   gap: 0em;
-  /* max-width: 80%}; */
-  background-color: rgb(205, 221, 216);
-  width: 100%;
+  /* background-color: rgb(56, 160, 127); */
+  width: 80%;
+  height: 100%;
+  padding: 0 .2em;
 }
-
 .ac-accessCard-info p {
   font-size: 1.1em;
-  padding: 0 0 0 .2em;
   white-space: nowrap; 
   overflow: hidden; 
   text-overflow: ellipsis; 
 }
-
 .ac-accessCard-UserCode {
   color: #908e8e;
-  padding: 0 0 0 .3em;
   font-size: 1.1em;
   letter-spacing: 1px;
 }
@@ -52,18 +57,21 @@
 }
 
 
-.ac-accessCard-aside {
+
+aside.ac-accessCard-aside {
   display: flex;
   flex-flow: column wrap;
   align-items: center;
   justify-content: center;
-  gap: .4em;
+  gap: .1em;
+  /* background-color: bisque; */
+  width: 10%;
+  height: 100%;
 }
-.ac-accessCard-time {
+span.ac-accessCard-time {
   color: #908e8e;
   font-size: 1em;
 }
-.ac-accessCard-ubi {
-  color: green;
-  width: 1.5em;
+img.ac-accessCard-ubi {
+  width: 1.1em;
 }
