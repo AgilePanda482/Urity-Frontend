@@ -13,15 +13,14 @@ article.ac-accessCard {
 header.ac-accessCard-header {
   display: flex;
   align-items: center;
-  /* gap: 4trpx */
   /* background-color: rgb(219, 197, 0); */
-  width: 10%;
   height: 100%;
 }
 img.ac-accessCard-avatar {
   width: 2.5em;
+  width: 100%;
   height: 2.5em;
-  border-radius: 1000px;
+  border-radius: 50%;
   background-color: #bbb;  
 }
 
@@ -31,29 +30,32 @@ img.ac-accessCard-avatar {
 div.ac-accessCard-info {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   gap: 0em;
   /* background-color: rgb(56, 160, 127); */
   width: 80%;
   height: 100%;
-  padding: 0 .2em;
+  padding: 0 .4em;
 }
 .ac-accessCard-info p {
-  font-size: 1.1em;
+  font-size: .9em;
   white-space: nowrap; 
   overflow: hidden; 
   text-overflow: ellipsis; 
+  /* background-color: blue; */
 }
 .ac-accessCard-UserCode {
   color: #908e8e;
-  font-size: 1.1em;
+  font-size: 1em;
   letter-spacing: 1px;
+  /* background-color: brown; */
 }
 .ac-accessCard-UserInfo {
   color: #908e8e;
   padding: 0 0 0 1em;
   font-size: 1em;
   letter-spacing: 1px;
+  /* background-color: coral; */
 }
 
 
@@ -65,7 +67,7 @@ aside.ac-accessCard-aside {
   justify-content: center;
   gap: .1em;
   /* background-color: bisque; */
-  width: 10%;
+  /* width: 10%; */
   height: 100%;
 }
 span.ac-accessCard-time {
@@ -75,3 +77,4 @@ span.ac-accessCard-time {
 img.ac-accessCard-ubi {
   width: 1.1em;
 }
+

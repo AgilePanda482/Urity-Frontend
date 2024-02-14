@@ -52,6 +52,7 @@ ul {
 .main .header {
   display: flex;
   flex-direction: row;
+  flex-flow: row nowrap;
   justify-content: space-between;
   align-items: center;
   width: 100%;
@@ -132,7 +133,7 @@ ul {
   margin: 2em 0 0 2.8em;
 }
 .main .header__container__menu-despegable ul a {
-  font-size: 1.3em;
+  font-size: 1.1em;
   color: white;
 }
 .main .root {
@@ -141,9 +142,17 @@ ul {
   width: 95%;
 }
 
+@media only screen and (min-width: 450px) {
+  .main .root {
+    width: 25em;
+  }
+}
 @media only screen and (min-width: 750px) {
   .main .header {
-    width: 85%;
+    width: 100%;
+  }
+  .main .root {
+    width: 50%;
   }
 }
 @media only screen and (min-width: 1024px) {

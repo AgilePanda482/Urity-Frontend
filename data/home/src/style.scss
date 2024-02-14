@@ -42,6 +42,7 @@ ul { list-style: none;}
     .header {
     display: flex;
     flex-direction: row;
+    flex-flow: row nowrap;
     justify-content: space-between;
     align-items: center;
     width: 100%;
@@ -130,7 +131,7 @@ ul { list-style: none;}
                 margin: 2em 0 0 2.8em;
                 
                 a{
-                    font-size: 1.3em;
+                    font-size: 1.1em;
                     color: white;
                 }
             }
@@ -147,10 +148,21 @@ ul { list-style: none;}
     }
 }
 
+@media only screen and (min-width: 450px) { //CELULAR TABLETA
+    .main {
+        .root {
+            width: 25em;
+        }
+    }
+}
+
 @media only screen and (min-width: 750px) { //TABLETA
     .main {
         .header {
-            width: 85%;
+            width: 100%;
+        }
+        .root {
+            width: 50%;
         }
     }
 }
