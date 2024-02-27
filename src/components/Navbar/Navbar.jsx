@@ -3,26 +3,35 @@ import { Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, DropdownItem, Dro
 import { UrityLogo } from "./Logo.jsx";
 
 export default function NavbarComponent() {
+
   return (
-    <Navbar data-theme="dark" variant="sticky">
+    <Navbar data-theme="dark" variant="sticky" className="mb-20">
       <NavbarBrand>
         <UrityLogo />
       </NavbarBrand>
 
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
         <NavbarItem isActive>
-          <Link href="#" aria-current="page" color="primary">
+          <Link href="/home" aria-current="page" color="primary">
             Inicio
           </Link>
         </NavbarItem>
+
         <NavbarItem>
-          <Link color="foreground" href="#">
+          <Link color="foreground" href="/añadir">
             Añadir
           </Link>
         </NavbarItem>
+
         <NavbarItem>
-          <Link color="foreground" href="#">
-            Integrations
+          <Link color="foreground" href="/verificar">
+            Verificar
+          </Link>
+        </NavbarItem>
+
+        <NavbarItem>
+          <Link color="foreground" href="/usuarios">
+            Usuarios
           </Link>
         </NavbarItem>
       </NavbarContent>
@@ -40,10 +49,10 @@ export default function NavbarComponent() {
               src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
             />
           </DropdownTrigger>
-          <DropdownMenu aria-label="Profile Actions" variant="flat" >
+          <DropdownMenu aria-label="Profile Actions" variant="flat">
             <DropdownItem key="profile" className="h-14 gap-2">
               <p className="font-semibold">Sesión iniciada</p>
-              <p className="font-semibold">prepa17@udg.com.mx</p>
+              <p className="font-semibold">correo@escuela.com.mx</p>
             </DropdownItem>
             <DropdownItem key="settings">My Settings</DropdownItem>
             <DropdownItem key="team_settings">Team Settings</DropdownItem>
