@@ -1,8 +1,15 @@
 // import React from "react";
-import { Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, DropdownItem, DropdownTrigger, Dropdown, DropdownMenu, Avatar } from "@nextui-org/react";
+import { Navbar, NavbarBrand, NavbarContent, NavbarItem, DropdownItem, DropdownTrigger, Dropdown, DropdownMenu, Avatar } from "@nextui-org/react";
 import { UrityLogo } from "./Logo.jsx";
+import { NavLink } from "react-router-dom";
 
 export default function NavbarComponent() {
+  // eslint-disable-next-line react/no-unknown-property
+  <style jsx global>{`
+    .active {
+      @apply text-primary;
+    }
+  `}</style>;
 
   return (
     <Navbar data-theme="dark" variant="sticky" className="mb-20">
@@ -11,28 +18,24 @@ export default function NavbarComponent() {
       </NavbarBrand>
 
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
-        <NavbarItem isActive>
-          <Link href="/home" aria-current="page" color="primary">
-            Inicio
-          </Link>
+        <NavbarItem >
+          <NavLink to="/home" activeClassName="active" className="nav-link">Inicio</NavLink>
+          {/* <Link href="/home" aria-current="page" color="primary">Inicio</Link> */}
         </NavbarItem>
 
         <NavbarItem>
-          <Link color="foreground" href="/añadir">
-            Añadir
-          </Link>
+          <NavLink to="/añadir" activeClassName="active" className="nav-link">Añadir</NavLink>
+          {/* <Link color="foreground" href="/añadir">Añadir</Link> */}
         </NavbarItem>
 
         <NavbarItem>
-          <Link color="foreground" href="/verificar">
-            Verificar
-          </Link>
+          <NavLink to="/verificar" activeClassName="active" className="nav-link">Verificar</NavLink>
+          {/* <Link color="foreground" href="/verificar">Verificar</Link> */}
         </NavbarItem>
 
         <NavbarItem>
-          <Link color="foreground" href="/usuarios">
-            Usuarios
-          </Link>
+          <NavLink to="/usuarios" activeClassName="active" className="nav-link">Usuarios</NavLink>
+          {/* <Link color="foreground" href="/usuarios">Usuarios</Link> */}
         </NavbarItem>
       </NavbarContent>
 

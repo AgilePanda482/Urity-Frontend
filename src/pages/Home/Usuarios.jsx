@@ -1,6 +1,6 @@
 import NavbarComponent from "../../components/Navbar/Navbar"
 
-function Add() {
+function Users() {
   const theObject = {
     name: 'Javier',
     age: 23,
@@ -17,7 +17,7 @@ function Add() {
       <NavbarComponent />
       <div className="h-screen text-white w-1/2 m-auto bg-slate-500 rounded-2xl overflow-hidden">
         <div className="h-screen flex-col gap-5 bg-slate-500 flex justify-center items-center text-center">
-          <h1 className="text-5xl font-bold">Añadir</h1>
+          <h1 className="text-5xl font-bold">Usuarios</h1>
           <p className="text-xl">{theObject.name}</p>
           <p className="text-xl">{theObject.age}</p>
           <p className="text-xl">{theObject.country}</p>
@@ -29,4 +29,4 @@ function Add() {
     </div>
   )
 }
-export default Add
+export default Users
