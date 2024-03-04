@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import NavbarComponent from "../../components/Navbar/Navbar";
 import { io } from 'socket.io-client';
+import AccessCard from "../../components/Access/AccessCard";
 
 const socket = io('/');
 
@@ -21,26 +22,58 @@ function Home() {
     setTheObject(prevData => [...prevData, data]);
   };
 
+
+  // const time = new Date().toLocaleTimeString();
+  // const currentDate = new Date();
+  // const currentDayMonthYear = currentDate.toLocaleDateString();
+  // const currentHour = currentDate.getHours(); 
+  // const currentMinute = currentDate.getMinutes(); 
+
   return (
-    <div className="flex flex-col bg-black">
+    <div className="flex flex-col bg-black h-screen">
       <NavbarComponent />
-      <div className="h-screen text-white w-1/2 m-auto bg-slate-500 rounded-2xl overflow-hidden">
-        <div className="h-screen flex-col gap-5 bg-slate-500 flex justify-center items-center text-center">
-          <h1 className="text-5xl font-bold">Home</h1>
-          {/* Asegúrate de mapear el array para renderizar cada objeto */}
-          {theObject.map((item, index) => (
-            <div key={index}>
-              <p className="text-xl">{item.Codigo}</p>
-              <p className="text-xl">{item.UID}</p>
-              <p className="text-xl">{item.Nombre}</p>
-              <p className="text-xl">{item.DatoAcademico}</p>
-              {/* Asegúrate de que getFullName sea una función definida */}
-              <p className="text-xl text-red-500">{item.getFullName ? item.getFullName() : ''}</p>
-            </div>
-          ))}
+
+      {/* Asegúrate de mapear el array para renderizar cada objeto */}
+      {theObject.map((item, index) => (
+        <div key={index} >
+          <p className="text-xl">{item.Codigo}</p>
+          <p className="text-xl">{item.UID}</p>
+          <p className="text-xl">{item.Nombre}</p>
+          <p className="text-xl">{item.DatoAcademico}</p>
+          {/* Asegúrate de que getFullName sea una función definida */}
+          <p className="text-xl text-red-500">{item.getFullName ? item.getFullName() : ''}</p>
         </div>
+      ))}
+
+      <div style={{
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'flex-start',
+        alignItems: 'center',
+        height: '65vh',
+        width: '95%',
+        backgroundColor: '',
+        margin: '3em auto',
+        gap: '.4em',
+        overflow: "hidden"
+      }}>
+
+        <AccessCard />
+        <AccessCard />
+        <AccessCard />
+        <AccessCard />
+        <AccessCard />
+        <AccessCard />
+        <AccessCard />
+        <AccessCard />
+        <AccessCard />
+        <AccessCard />
+        <AccessCard />
+        <AccessCard />
+        <AccessCard />
       </div>
-      <div className="h-screen bg-gradient-to-r from-cyan-500 to-blue-500"></div>
+
+
     </div>
   );
 }
