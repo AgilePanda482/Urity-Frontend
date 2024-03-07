@@ -1,4 +1,4 @@
-function AccessCard() {
+function AccessCard({ userName, id, status, species }) {
     return (
         // CARD CONTAINER
         <div style={{
@@ -42,7 +42,7 @@ function AccessCard() {
                         whiteSpace: 'nowrap',
                         textOverflow: 'ellipsis',
                         overflow: 'hidden',
-                    }}>ABRAHAM EMMANUEL GONZALEZ RINCON</p>
+                    }}>{userName}</p>
                 </div>
                 <div style={{
                     display: 'flex',
@@ -51,8 +51,9 @@ function AccessCard() {
                     height: '50%',
                     // backgroundColor: 'orange',
                 }}>
-                    <p>221768626</p>
-                    <p>6A1BTW</p>
+                    <p>{id}</p>
+                    <p>{species}</p>
+                    <p>{status}</p>
                 </div>
             </div>
 
