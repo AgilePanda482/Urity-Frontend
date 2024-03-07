@@ -22,6 +22,9 @@ function Home() {
     setTheObject((prevData) => [...prevData, data]);
   };
 
+  const currentHour = new Date().getHours();
+  const currentMinute = new Date().getMinutes();
+
   return (
     <div className="flex flex-col bg-black h-sreen">
       <NavbarComponent />
@@ -46,6 +49,8 @@ function Home() {
             id={item.id}
             status={item.status}
             species={item.species}
+            image={item.image}
+            time={`${currentHour}:${currentMinute}`}
           />
         </div>
       ))}
