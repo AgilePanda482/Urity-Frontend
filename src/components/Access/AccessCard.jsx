@@ -1,14 +1,10 @@
-function AccessCard({ userName, id, status, species, image, time }) {
-  function getUbication(status) {
-    if (status === "Alive") {
-      return "V";
-    } else if (status === "Dead") {
-      return "M";
-    } else {
-      return "D";
-    }
-  }
+import arrowDown from "../../assets/arrowDown.svg";
+import arrowUp from "../../assets/arrowUp.svg";
 
+function AccessCard({ userName, id, status, species, image, time }) {
+  
+  const arrow = status === "Alive" ? arrowUp : arrowDown;
+  
   return (
     // CARD CONTAINER
     <div
@@ -88,15 +84,19 @@ function AccessCard({ userName, id, status, species, image, time }) {
       {/* RIGHT SIDE / TIME / ESTATUS  */}
       <div
         style={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
           width: "3em",
           // backgroundColor: 'blue',
           height: "100%",
           padding: ".2em",
+          gap: ".5em",
         }}
       >
         <div
           style={{
-            backgroundColor: "gray",
             height: "50%",
             width: "100%",
             textAlign: "center",
@@ -110,19 +110,15 @@ function AccessCard({ userName, id, status, species, image, time }) {
         </div>
         <div
           style={{
-            backgroundColor: "teal",
             height: "50%",
             width: "100%",
             textAlign: "center",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            fontSize: ".8em",
-
-            
           }}
         >
-          <p>{getUbication(status)}</p>
+          <img src={arrow} style={{ width: "1.7em" }} alt="" />
         </div>
       </div>
     </div>
