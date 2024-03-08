@@ -22,6 +22,7 @@ function Home() {
     setTheObject((prevData) => [...prevData, data]);
   };
 
+  // TIME
   const currentHour = new Date().getHours();
   const currentMinute = new Date().getMinutes();
 

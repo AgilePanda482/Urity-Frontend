@@ -19,22 +19,22 @@ export default function NavbarComponent() {
 
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
         <NavbarItem >
-          <NavLink to="/home" activeClassName="active" className="nav-link">Inicio</NavLink>
+          <NavLink to="/home" className="nav-link">Inicio</NavLink>
           {/* <Link href="/home" aria-current="page" color="primary">Inicio</Link> */}
         </NavbarItem>
 
         <NavbarItem>
-          <NavLink to="/añadir" activeClassName="active" className="nav-link">Añadir</NavLink>
+          <NavLink to="/añadir" className="nav-link">Añadir</NavLink>
           {/* <Link color="foreground" href="/añadir">Añadir</Link> */}
         </NavbarItem>
 
         <NavbarItem>
-          <NavLink to="/verificar" activeClassName="active" className="nav-link">Verificar</NavLink>
+          <NavLink to="/verificar" className="nav-link">Verificar</NavLink>
           {/* <Link color="foreground" href="/verificar">Verificar</Link> */}
         </NavbarItem>
 
         <NavbarItem>
-          <NavLink to="/usuarios" activeClassName="active" className="nav-link">Usuarios</NavLink>
+          <NavLink to="/usuarios" className="nav-link">Usuarios</NavLink>
           {/* <Link color="foreground" href="/usuarios">Usuarios</Link> */}
         </NavbarItem>
       </NavbarContent>

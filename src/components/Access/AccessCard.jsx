@@ -1,14 +1,13 @@
 function AccessCard({ userName, id, status, species, image, time }) {
- 
-    function getUbication(status) {
-        if (status === 'Alive') {
-            return 'V'
-        } else if (status === 'Dead') {
-            return 'M'
-        } else {
-            return 'D'
-        }
+  function getUbication(status) {
+    if (status === "Alive") {
+      return "V";
+    } else if (status === "Dead") {
+      return "M";
+    } else {
+      return "D";
     }
+  }
 
   return (
     // CARD CONTAINER
@@ -119,6 +118,8 @@ function AccessCard({ userName, id, status, species, image, time }) {
             justifyContent: "center",
             alignItems: "center",
             fontSize: ".8em",
+
+            
           }}
         >
           <p>{getUbication(status)}</p>
