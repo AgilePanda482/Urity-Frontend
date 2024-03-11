@@ -27,34 +27,26 @@ function Home() {
   const currentMinute = new Date().getMinutes();
 
   return (
-    <div className="flex flex-col bg-black h-sreen">
+    //CONTAINER SCREEN
+    <div className="flex flex-col justify-start items-center bg-black min-h-screen w-full">
+      {/* NAVBAR */}
       <NavbarComponent />
 
-      {theObject.map((item, index) => (
-        <div
-          key={index}
-          style={{
-            display: "flex",
-            flexDirection: "column-reverse",
-            justifyContent: "flex-start",
-            alignItems: "center",
-            height: "2.5em",
-            width: "95%",
-            margin: ".5em auto",
-            gap: ".4em",
-            // overflow: "hidden",
-          }}
-        >
-          <AccessCard
-            userName={item.name}
-            id={item.id}
-            status={item.status}
-            species={item.species}
-            image={item.image}
-            time={`${currentHour}:${currentMinute}`}
-          />
+
+        {/* CARD CONTAINER */}
+        <div className="flex flex-col-reverse justify-start items-center gap-3 w-screen bg-black-200 rounded-2xl overflow-hidden">
+          {theObject.map((item, index) => (
+            <AccessCard
+              userName={item.name}
+              id={item.id}
+              status={item.status}
+              species={item.species}
+              image={item.image}
+              time={`${currentHour}:${currentMinute}`}
+            />
+          ))}
         </div>
-      ))}
+
     </div>
   );
 }

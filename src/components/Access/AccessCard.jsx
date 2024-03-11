@@ -9,24 +9,25 @@ function AccessCard({ userName, id, status, species, image, time }) {
     // CARD CONTAINER
     <div
       style={{
-        // backgroundColor: 'red',
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        height: "2.5em",
+        height: "3.5em",
         width: "100%",
+        padding: ".5em",
         color: "white",
+        backdropFilter: 'blur(-2em)',
+        backgroundColor: "rgba(0, 0, 0, 0.9)",
       }}
     >
       {/* LEFT SIDE / CIRCLE / IMG  */}
       <div
         style={{
           width: "2.5em",
-          // backgroundColor: 'blue',
+          // backgroundColor: 'red',
           height: "100%",
         }}
       >
-        {/* <img src="" alt="" /> */}
         <div
           style={{
             backgroundColor: "gray",
@@ -86,13 +87,13 @@ function AccessCard({ userName, id, status, species, image, time }) {
         style={{
           display: "flex",
           flexDirection: "column",
-          justifyContent: "center",
+          justifyContent: "flex-end",
           alignItems: "center",
           width: "3em",
           // backgroundColor: 'blue',
           height: "100%",
-          padding: ".2em",
-          gap: ".5em",
+          padding: ".2em 0 .2em .4em",
+          gap: ".4em",
         }}
       >
         <div
@@ -102,7 +103,7 @@ function AccessCard({ userName, id, status, species, image, time }) {
             textAlign: "center",
             display: "flex",
             justifyContent: "center",
-            alignItems: "center",
+            alignItems: "flex-end",
             fontSize: ".8em",
           }}
         >
