@@ -39,6 +39,7 @@ function Home() {
           w-10/12 md:w-1/2 h-3/4  rounded-2xl overflow-hidden mt-20 overflow-y-auto scrollbar-hidden">
           {theObject.map((item, index) => (
             <AccessCard
+              key={index}
               userName={item.name}
               id={item.id}
               status={item.status}
