@@ -28,13 +28,15 @@ function Home() {
 
   return (
     //CONTAINER SCREEN
-    <div className="flex flex-col justify-start items-center bg-black min-h-screen w-full">
+    <div className="flex flex-col justify-start items-center bg-black h-screen w-full">
       {/* NAVBAR */}
       <NavbarComponent />
 
 
         {/* CARD CONTAINER */}
-        <div className="flex flex-col-reverse justify-start items-center gap-3 w-screen bg-black-200 rounded-2xl overflow-hidden">
+        <div 
+          className="flex flex-col-reverse justify-end items-center gap-3 
+          w-10/12 md:w-1/2 h-3/4  rounded-2xl overflow-hidden mt-20 overflow-y-auto scrollbar-hidden">
           {theObject.map((item, index) => (
             <AccessCard
               userName={item.name}

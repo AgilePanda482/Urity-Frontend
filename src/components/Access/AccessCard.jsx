@@ -16,8 +16,7 @@ function AccessCard({ userName, id, status, species, image, time }) {
         width: "100%",
         padding: ".5em",
         color: "white",
-        backdropFilter: 'blur(-2em)',
-        backgroundColor: "rgba(0, 0, 0, 0.9)",
+        backgroundColor: "rgba(0, 0, 0, 0.7)",
       }}
     >
       {/* LEFT SIDE / CIRCLE / IMG  */}
@@ -30,7 +29,6 @@ function AccessCard({ userName, id, status, species, image, time }) {
       >
         <div
           style={{
-            backgroundColor: "gray",
             height: "100%",
             borderRadius: "50%",
             overflow: "hidden",
@@ -53,7 +51,6 @@ function AccessCard({ userName, id, status, species, image, time }) {
           style={{
             width: "100%",
             height: "50%",
-            // backgroundColor: 'yellow',
             overflow: "hidden",
           }}
         >
@@ -90,7 +87,6 @@ function AccessCard({ userName, id, status, species, image, time }) {
           justifyContent: "flex-end",
           alignItems: "center",
           width: "3em",
-          // backgroundColor: 'blue',
           height: "100%",
           padding: ".2em 0 .2em .4em",
           gap: ".4em",

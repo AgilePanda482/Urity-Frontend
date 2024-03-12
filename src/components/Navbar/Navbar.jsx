@@ -12,7 +12,7 @@ export default function NavbarComponent() {
   `}</style>;
 
   return (
-    <Navbar data-theme="dark" variant="sticky" className="mb-16">
+    <Navbar data-theme="dark" variant="sticky">
       <NavbarBrand>
         <UrityLogo />
       </NavbarBrand>
