@@ -32,7 +32,6 @@ function Home() {
       {/* NAVBAR */}
       <NavbarComponent />
 
-
         {/* CARD CONTAINER */}
         <div 
           className="flex flex-col-reverse justify-end items-center gap-3 

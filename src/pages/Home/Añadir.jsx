@@ -1,32 +1,34 @@
-import NavbarComponent from "../../components/Navbar/Navbar"
+import NavbarComponent from "../../components/Navbar/Navbar";
 
 function Add() {
   const theObject = {
-    name: 'Javier',
+    name: "Javier",
     age: 23,
-    country: 'Colombia',
-    city: 'Medellin',
+    country: "Colombia",
+    city: "Medellin",
 
     getFullName: function () {
-      return `${this.name} ${this.age} ${this.country} ${this.city}`
-    }
-  }
+      return `${this.name} ${this.age} ${this.country} ${this.city}`;
+    },
+  };
 
   return (
-    <div className="flex flex-col bg-black">
+    <div className="flex flex-col justify-start items-center bg-black h-screen w-full">
       <NavbarComponent />
-      <div className="h-screen text-white w-1/2 m-auto bg-slate-500 rounded-2xl overflow-hidden">
-        <div className="h-screen flex-col gap-5 bg-slate-500 flex justify-center items-center text-center">
-          <h1 className="text-5xl font-bold">Añadir</h1>
-          <p className="text-xl">{theObject.name}</p>
-          <p className="text-xl">{theObject.age}</p>
-          <p className="text-xl">{theObject.country}</p>
-          <p className="text-xl">{theObject.city}</p>
-          <p className="text-xl text-red-500">{theObject.getFullName()}</p>
+
+      <div
+        className="flex flex-col justify-start items-center gap-3 w-10/12 md:w-1/2 h-3/4  rounded-2xl overflow-hidden mt-20 overflow-y-auto scrollbar-hidden bg-zinc-950"
+      >
+        <div className="flex w-full pl-4 pt-2">
+          <h1 className="text-md text-slate-600">Añadir Usuario</h1>
+        </div>
+        <div className="">
+          <form action="">
+        
+          </form>
         </div>
       </div>
-      <div className="h-screen bg-gradient-to-r from-cyan-500 to-blue-500"></div>
     </div>
-  )
+  );
 }
-export default Add
+export default Add;
