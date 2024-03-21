@@ -35,7 +35,7 @@ function Home() {
         {/* CARD CONTAINER */}
         <div 
           className="flex flex-col-reverse justify-end items-center gap-3 
-          w-10/12 md:w-1/2 h-3/4  rounded-2xl overflow-hidden mt-20 overflow-y-auto scrollbar-hidden">
+          w-10/12 md:w-1/2 h-3/4  rounded-2xl overflow-hidden mt-20">
           {theObject.map((item, index) => (
             <AccessCard
               key={index}
@@ -48,6 +48,7 @@ function Home() {
             />
           ))}
         </div>
+      
 
     </div>
   );
