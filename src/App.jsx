@@ -4,9 +4,9 @@ import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
 
 import Home from "./pages/Home/Home";
-import Add from "./pages/Home/Añadir";
-import Verification from "./pages/Home/Verificar";
-import Users from "./pages/Home/Usuarios";
+import Add from "./pages/Home/AddUser";
+import Verification from "./pages/Home/Verification";
+import Users from "./pages/Home/Users";
 
 
 function App() {

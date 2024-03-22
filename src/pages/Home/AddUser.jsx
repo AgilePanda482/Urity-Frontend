@@ -5,25 +5,40 @@ import Nombre from "../../components/FormAddUser/Name";
 import Codigo from "../../components/FormAddUser/CollegeCode";
 import CredencialUID from "../../components/FormAddUser/CardUID";
 import Carrera from "../../components/FormAddUser/Career";
-import GradoGrupo from "../../components/FormAddUser/Grade.Group";
+import Grado from "../../components/FormAddUser/Grade";
+import Groupo from "../../components/FormAddUser/Group";
+import Shift from "../../components/FormAddUser/Shift";
 
 function Add() {
-
   return (
     <div className="flex flex-col justify-start items-center bg-black h-screen w-full">
       <NavbarComponent />
 
-      <div className="grid grid- justify-start items-start gap-3 w-1/2 md:w-1/3 h-auto rounded-2xl p-5 overflow-hidden mt-20 overflow-y-auto scrollbar-hidden bg-zinc-950" data-theme="dark">
-        
-        <Foto />
-        <Nombre />
-        <Codigo />
+      <div
+        className="flex flex-col justify-center items-center gap-5 h-auto w-11/12 md:w-7/12 lg:w-5/12 xl:w-4/12 rounded-2xl p-5 overflow-hidden md:mt-20 mt-10 overflow-y-auto scrollbar-hidden bg-zinc-950"
+        data-theme="dark"
+        // style={{ width: "23.5em", maxWidth: "800px" }}
+      >
+        <div className="flex justify-center items-center w-full mb-3">
+          <Foto />
+        </div>
 
-        <GradoGrupo />
-        <Carrera />
+        <div className="flex justify-center items-center w-full h-12">
+          <Nombre />
+        </div>
+
+        <div className="flex justify-evenly items-center w-full h-12 gap-2">
+          <Codigo />
+          <Grado />
+          <Groupo />
+        </div>
+
+        <div className="flex justify-evenly items-center w-full h-12 gap-2">
+          <Carrera />
+          <Shift />
+        </div>
 
         <CredencialUID />
-
       </div>
     </div>
   );

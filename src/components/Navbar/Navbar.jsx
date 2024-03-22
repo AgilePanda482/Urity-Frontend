@@ -40,7 +40,7 @@ export default function NavbarComponent() {
       </NavbarContent>
 
       <NavbarContent as="div" justify="end">
-        <Dropdown placement="bottom-end" data-theme="dark">
+        <Dropdown placement="bottom-end" data-theme="">
           <DropdownTrigger>
             <Avatar
               isBordered
