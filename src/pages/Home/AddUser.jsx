@@ -8,6 +8,8 @@ import Carrera from "../../components/FormAddUser/Career";
 import Grado from "../../components/FormAddUser/Grade";
 import Groupo from "../../components/FormAddUser/Group";
 import Shift from "../../components/FormAddUser/Shift";
+import LlaveMaestra from "../../components/FormAddUser/MasterKey";
+import Registrar from "../../components/FormAddUser/Submit";
 
 function Add() {
   return (
@@ -38,7 +40,14 @@ function Add() {
           <Shift />
         </div>
 
-        <CredencialUID />
+        <div className="flex justify-center items-center w-full h-12 gap-2">
+          <CredencialUID />
+          <LlaveMaestra />
+        </div>
+
+        <div className="flex justify-center items-center w-full h-12 gap-2">
+          <Registrar />
+        </div>    
       </div>
     </div>
   );
