@@ -3,7 +3,7 @@ import {Input} from "@nextui-org/react";
 
 export default function CredencialUID() {
   return (
-    <div className="flex w-1/2 flex-wrap md:flex-nowrap gap-4">
+    <div className="flex w-2/3 flex-wrap md:flex-nowrap gap-4">
       <Input 
         type="text" 
         label="ID de la credencial" 
