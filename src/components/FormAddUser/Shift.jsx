@@ -1,16 +1,54 @@
-import React from "react";
+import React, { useState } from "react";
 import { Autocomplete, AutocompleteItem } from "@nextui-org/react";
+import { useFilter } from "@react-aria/i18n";
 import { options } from "../FormAddUser/Shift/data";
 
-export default function Shift() {
+export default function Shift({ field, form: { touched, errors }, ...props }) {
+  const { startsWith } = useFilter({ sensitivity: "base" });
+  const [inputValue, setInputValue] = useState(field.value);
+  const [items, setItems] = useState(options);
+
+  const handleChange = (value) => {
+    field.onChange({ target: { name: field.name, value } });
+    setInputValue(value);
+    setItems(
+      options.filter((item) =>
+        startsWith(item.label.toLowerCase(), value.toLowerCase())
+      )
+    );
+  };
+
+  const onInputChange = (value) => {
+    field.onChange({ target: { name: field.name, value } });
+    setInputValue(value);
+    setItems(
+      options.filter((item) =>
+        startsWith(item.label.toLowerCase(), value.toLowerCase())
+      )
+    );
+  };
+
+  const stopPropagation = (e) => {
+    e.stopPropagation();
+  };
+  
   return (
-    <div className="flex w-5/12 md:w-5/12 lg:w-5/12 xl:w-5/12 flex-wrap md:flex-nowrap">
-      <Autocomplete label="Turno" className="max-w-xs" data-theme="dark">
-        {options.map((shift) => (
-          <AutocompleteItem key={shift.value} value={shift.value}>
-            {shift.label}
-          </AutocompleteItem>
-        ))}
+    <div className="flex w-6/12 md:w-4/12 ">
+      <Autocomplete
+        label="Carrera"
+        data-theme="dark"
+        inputValue={inputValue}
+        items={items}
+        selectedKey={field.value}
+        onInputChange={onInputChange}
+        onSelectionChange={handleChange}
+        onKeyDown={stopPropagation} // Stop propagation for key events
+        onClick={stopPropagation} // Stop propagation for click events
+        {...props}
+      >
+        {(item) => (
+          <AutocompleteItem key={item.value}>{item.label}</AutocompleteItem>
+        )}
       </Autocomplete>
     </div>
   );

@@ -3,7 +3,7 @@ import { Input } from "@nextui-org/react";
 
 export default function Codigo({ field, form: { touched, errors }, ...props }) {
   return (
-    <div className="flex w-full flex-wrap md:flex-nowrap gap-4">
+    <div className="flex w-6/12 md:w-7/12 flex-wrap md:flex-nowrap gap-4">
       <Input 
         type="number" 
         label="Código" 

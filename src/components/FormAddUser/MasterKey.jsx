@@ -9,7 +9,7 @@ export default function LlaveMaestra({ field, form: { touched, errors }, ...prop
   const toggleVisibility = () => setIsVisible(!isVisible);
 
   return (
-    <div className="flex w-1/3 flex-wrap md:flex-nowrap gap-4">
+    <div className="flex w-5/12 flex-wrap md:flex-nowrap gap-4">
       <Input
         label="Master Key"
         bordered
