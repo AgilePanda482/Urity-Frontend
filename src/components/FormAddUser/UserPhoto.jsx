@@ -1,8 +1,8 @@
 import React, { useRef, useState } from "react";
-import AddPhoto from "../../assets/AddPhoto.svg";
 import Orion_camera from "../../assets/Orion_camera.svg";
+import AddPhoto from "../../assets/AddPhoto.svg";
 
-export default function Foto() {
+export default function Foto({ field, form: { setFieldValue }, ...props }) {
   const fileInputRef = useRef(null);
   const [imagePreview, setImagePreview] = useState(null);
 
@@ -16,6 +16,7 @@ export default function Foto() {
       const reader = new FileReader();
       reader.onloadend = () => {
         setImagePreview(reader.result);
+        setFieldValue(field.name, file); // Set the selected file to the form field
       };
       reader.readAsDataURL(file);
     }
@@ -27,23 +28,21 @@ export default function Foto() {
         className="flex justify-center items-center w-32 h-32 bg-black rounded-full cursor-pointer overflow-hidden"
         onClick={handleFileSelect}
       >
-        <form action="">
-          <input
-            type="file"
-            className="hidden"
-            onChange={handleFileChange}
-            ref={fileInputRef}
+        <input
+          type="file"
+          className="hidden"
+          onChange={handleFileChange}
+          ref={fileInputRef}
+        />
+        {imagePreview ? (
+          <img
+            src={imagePreview}
+            alt="Selected"
+            className="w-auto h-auto object-cover"
           />
-          {imagePreview ? (
-            <img
-              src={imagePreview}
-              alt="Selected"
-              className="w-auto h-auto object-cover"
-            />
-          ) : (
-            <img src={Orion_camera} alt="Orion_camera" className="w-14 h-14" />
-          )}
-        </form>
+        ) : (
+          <img src={Orion_camera} alt="Orion_camera" className="w-14 h-14" />
+        )}
       </div>
     </div>
   );
