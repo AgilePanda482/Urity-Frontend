@@ -37,6 +37,7 @@ export default function Grado({ field, form: { touched, errors }, ...props }) {
       <Autocomplete
         label="Grado"
         data-theme="dark"
+        size="sm"
         inputValue={inputValue}
         items={items}
         selectedKey={field.value}

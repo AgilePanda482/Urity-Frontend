@@ -25,7 +25,7 @@ export default function Foto({ field, form: { setFieldValue }, ...props }) {
   return (
     <div className="flex justify-center items-center">
       <div
-        className="flex justify-center items-center w-32 h-32 bg-black rounded-full cursor-pointer overflow-hidden"
+        className="flex justify-center items-center w-28 h-28 bg-black rounded-full cursor-pointer overflow-hidden"
         onClick={handleFileSelect}
       >
         <input

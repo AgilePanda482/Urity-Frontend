@@ -31,12 +31,13 @@ export default function Career({ field, form: { touched, errors }, ...props }) {
   const stopPropagation = (e) => {
     e.stopPropagation();
   };
-  
+
   return (
     <div className="flex w-6/12 md:w-4/12 ">
       <Autocomplete
         label="Carrera"
         data-theme="dark"
+        size="sm"
         inputValue={inputValue}
         items={items}
         selectedKey={field.value}
@@ -53,5 +54,3 @@ export default function Career({ field, form: { touched, errors }, ...props }) {
     </div>
   );
 }
-
-

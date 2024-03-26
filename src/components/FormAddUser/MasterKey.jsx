@@ -3,7 +3,11 @@ import { Input } from "@nextui-org/react";
 import { EyeFilledIcon } from "../Login/EyeFilledIcon";
 import { EyeSlashFilledIcon } from "../Login/EyeSlashFilledIcon";
 
-export default function LlaveMaestra({ field, form: { touched, errors }, ...props }) {
+export default function LlaveMaestra({
+  field,
+  form: { touched, errors },
+  ...props
+}) {
   const [isVisible, setIsVisible] = React.useState(false);
 
   const toggleVisibility = () => setIsVisible(!isVisible);
@@ -14,6 +18,7 @@ export default function LlaveMaestra({ field, form: { touched, errors }, ...prop
         label="Master Key"
         bordered
         color="primary"
+        size="sm"
         {...field} // Pass field props to Input component
         {...props}
         endContent={
@@ -30,7 +35,8 @@ export default function LlaveMaestra({ field, form: { touched, errors }, ...prop
           </button>
         }
         type={isVisible ? "text" : "password"}
-        className="w-full"s
+        className="w-full"
+        s
       />
       {touched[field.name] && errors[field.name] && (
         <div className="error">{errors[field.name]}</div>
