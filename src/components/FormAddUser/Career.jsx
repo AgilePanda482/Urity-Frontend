@@ -33,7 +33,7 @@ export default function Career({ field, form: { touched, errors }, ...props }) {
   };
 
   return (
-    <div className="flex w-6/12 md:w-4/12 ">
+    <div className="flex w-8/12 md:w-8/12 ">
       <Autocomplete
         label="Carrera"
         data-theme="dark"

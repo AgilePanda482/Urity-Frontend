@@ -33,9 +33,9 @@ export default function Shift({ field, form: { touched, errors }, ...props }) {
   };
 
   return (
-    <div className="flex w-6/12 md:w-4/12 ">
+    <div className="flex w-4/12 md:w-4/12 ">
       <Autocomplete
-        label="Carrera"
+        label="Turno"
         data-theme="dark"
         size="sm"
         inputValue={inputValue}

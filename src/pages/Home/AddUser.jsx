@@ -38,7 +38,7 @@ function Add() {
       <NavbarComponent />
 
       <div
-        className="flex justify-center items-center rounded-2xl overflow-hidden bg-zinc-950 h-auto p-4 mt-20 w-11/12   sm:w-8/12   md:w-7/12   lg:w-5/12   xl:w-4/12 "
+        className="flex justify-center items-center rounded-2xl overflow-hidden bg-zinc-950 h-auto p-4 mt-20 w-11/12   sm:w-8/12   md:w-7/12   lg:w-5/12   xl:w-4/12   2xl:w-3/12"
         data-theme="dark"
       >
         <Formik initialValues={initialValues} onSubmit={onSubmit}>
