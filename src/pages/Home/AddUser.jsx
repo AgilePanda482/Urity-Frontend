@@ -2,6 +2,8 @@ import React from "react";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 
+import { createUser } from "../../../api/users";
+
 import NavbarComponent from "../../components/Navbar/Navbar";
 
 import Foto from "../../components/FormAddUser/UserPhoto";
@@ -28,9 +30,10 @@ function Add() {
     masterKey: "",
   };
 
-  const onSubmit = (values, actions) => {
-    console.log(values);
+  const onSubmit = async (values, actions) => {
     actions.setSubmitting(false);
+    const res = await createUser(values);
+    console.log(res);
   };
 
   return (
