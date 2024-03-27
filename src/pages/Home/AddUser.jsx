@@ -2,7 +2,7 @@ import React from "react";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 
-import { createUser } from "../../../api/users";
+import { createUser } from "../../services/users";
 
 import NavbarComponent from "../../components/Navbar/Navbar";
 

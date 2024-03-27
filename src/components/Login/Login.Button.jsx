@@ -7,7 +7,7 @@ export default function LoginButton() {
             color="primary"
             type="submit"
             className="w-full my-2 max-w-xs"
-            size='lg'
+            size='lg' 
         >
             Login
         </Button>
