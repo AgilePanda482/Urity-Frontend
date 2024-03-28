@@ -1,6 +1,7 @@
 import React from "react";
 import { Formik, Form, Field } from "formik";
-// import * as Yup from "yup";
+
+import { loginRequest } from "../../services/auth";
 
 import Logo from "../../assets/Logo.png";
 import InputEmail from "../../components/Login/Email.Input";
@@ -16,6 +17,18 @@ function Login() {
   const onSubmit = async (values, actions) => {
     actions.setSubmitting(false);
     console.log(values);
+
+    try {
+      const res = await loginRequest(values);
+
+      if (res.error) {
+        console.log("Error: ", res.error);
+      } else {
+        console.log("Success: ", res);
+      }
+    } catch (error) {
+      console.log("Error on request: ", error);
+    }
   };
 
   return (

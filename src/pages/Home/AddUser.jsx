@@ -1,6 +1,5 @@
 import React from "react";
 import { Formik, Form, Field } from "formik";
-import * as Yup from "yup";
 
 import { createUser } from "../../services/users";
 
