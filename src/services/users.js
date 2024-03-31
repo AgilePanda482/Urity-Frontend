@@ -1,5 +1,3 @@
-import axios from "axios";
+import axios from "./axios.js";
 
-const URL = "http://localhost:4000/api/user";
-
-export const createUser = (user) => axios.post(`${URL}/create`, user);
+export const createUser = (user) => axios.post(`user/create`, user);
