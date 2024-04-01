@@ -1,6 +1,8 @@
 import React from "react";
 import { Formik, Form, Field } from "formik";
 import { useAuth } from "../../context/authContext";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 import Logo from "../../assets/Logo.png";
 import InputEmail from "../../components/Login/Email.Input";
@@ -13,11 +15,16 @@ function Login() {
     password: "",
   };
 
-  const { login } = useAuth();
+  const { login, isLogin } = useAuth();
+  const navigate = useNavigate();
 
-  const onSubmit = (values) => {
-    login(values);  
-  };
+  const onSubmit = (values) => login(values);
+
+  useEffect(() => {
+    if (isLogin) {
+      navigate("/home");
+    }
+  }, [isLogin]);
 
   return (
     <div className="flex justify-center items-start md:items-center sm:items-center pt-20 md:pt-0 h-screen bg-black max-h-screen max-w-full">
