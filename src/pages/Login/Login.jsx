@@ -1,8 +1,6 @@
 import React from "react";
 import { Formik, Form, Field } from "formik";
-import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
-import { useEffect } from "react";
 
 import Logo from "../../assets/Logo.png";
 import InputEmail from "../../components/Login/Email.Input";
@@ -15,20 +13,10 @@ function Login() {
     password: "",
   };
 
-  const {login, currentUser} = useAuth();
-  const navigate = useNavigate();
+  const { login } = useAuth();
 
-  useEffect(() => {
-    if (currentUser) navigate("/home");
-  }, [currentUser]);
-
-  
-
-  console.log(currentUser);
-
-  const onSubmit = async (values) => {
-    console.log(values);
-    await login(values);
+  const onSubmit = (values) => {
+    login(values);  
   };
 
   return (
