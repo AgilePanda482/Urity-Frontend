@@ -1,16 +1,17 @@
+import React from "react";
 import { Input } from "@nextui-org/react";
 
-export default function Nombre({ field, form: { touched, errors }, ...props }) {
+export default function Grupo({ field, form: { touched, errors }, ...props }) {
   return (
-    <div className="flex w-full flex-wrap md:flex-nowrap gap-4">
+    <div className="flex w-3/12 flex-wrap md:flex-nowrap gap-4">
       <Input
         type="text"
-        label="Nombre completo"
+        label="Grupo"
         color="default"
-        bordered
         size="sm"
+        bordered
         {...field} // Pass field props to Input component
-        {...props} // Pass other props
+        {...props}
       />
       {touched[field.name] && errors[field.name] && (
         <div className="error">{errors[field.name]}</div>

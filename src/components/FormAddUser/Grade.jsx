@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Autocomplete, AutocompleteItem } from "@nextui-org/react";
 import { useFilter } from "@react-aria/i18n";
-import { options } from "../FormAddUser/Career/data";
+import { options } from "../FormAddUser/Grade/data";
 
-export default function Career({ field, form: { touched, errors }, ...props }) {
+export default function Grado({ field, form: { touched, errors }, ...props }) {
   const { startsWith } = useFilter({ sensitivity: "base" });
   const [inputValue, setInputValue] = useState(field.value);
   const [items, setItems] = useState(options);
@@ -33,9 +33,9 @@ export default function Career({ field, form: { touched, errors }, ...props }) {
   };
 
   return (
-    <div className="flex w-8/12 md:w-8/12 ">
+    <div className="flex w-5/12 md:w-4/12 ">
       <Autocomplete
-        label="Carrera"
+        label="Grado"
         data-theme="dark"
         size="sm"
         inputValue={inputValue}

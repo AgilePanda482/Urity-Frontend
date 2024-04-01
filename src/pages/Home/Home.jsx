@@ -3,24 +3,26 @@ import NavbarComponent from "../../components/Navbar/Navbar";
 import { io } from "socket.io-client";
 import AccessCard from "../../components/Access/AccessCard";
 
-const socket = io("/");
+const socket = io("http://localhost:3000");
 
 function Home() {
   // Define el estado para almacenar el objeto
   const [theObject, setTheObject] = useState([]);
 
   useEffect(() => {
-    // Escucha el evento 'UID' y recibe datos
-    socket.on("UID", (data) => {
-      // console.log(data.Codigo);
-      receiveData(data);
-    });
-  }, []); // Asegúrate de que el efecto se ejecute solo una vez
+    // Actualiza el estado con los datos recibidos
+    const receiveData = (data) => {
+      setTheObject((prevData) => [...prevData, data]);
+    };
 
-  const receiveData = (data) => {
-    // Actualiza el estado con el nuevo objeto
-    setTheObject((prevData) => [...prevData, data]);
-  };
+    // Añade la función 'receiveData' como escucha del evento 'UID'
+    socket.on("UID", receiveData);
+
+    // Limpia la escucha del evento 'UID' cuando el componente se desmonta
+    return () => {
+      socket.off("UID", receiveData);
+    };
+  }, []);
 
   // TIME
   const currentHour = new Date().getHours();
@@ -48,8 +50,6 @@ function Home() {
             />
           ))}
         </div>
-      
-
     </div>
   );
 }
