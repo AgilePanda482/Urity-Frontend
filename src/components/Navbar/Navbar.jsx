@@ -2,8 +2,14 @@
 import { Navbar, NavbarBrand, NavbarContent, NavbarItem, DropdownItem, DropdownTrigger, Dropdown, DropdownMenu, Avatar } from "@nextui-org/react";
 import { UrityLogo } from "./Logo.jsx";
 import { NavLink } from "react-router-dom";
+import UdeG from "../../assets/UdeG.svg";
+
 
 export default function NavbarComponent() {
+  const activeStyles = {
+    color: "var(--nextui-colors-primary)",
+  };
+  const photo = UdeG;
   // eslint-disable-next-line react/no-unknown-property
   <style jsx global>{`
     .active {
@@ -40,29 +46,27 @@ export default function NavbarComponent() {
       </NavbarContent>
 
       <NavbarContent as="div" justify="end">
-        <Dropdown placement="bottom-end" data-theme="">
+        <Dropdown placement="bottom-end" data-theme="dark">
           <DropdownTrigger>
             <Avatar
               isBordered
               as="button"
               className="transition-transform"
               color="primary"
-              name="Jason Hughes"
+              name="UdeG"
               size="sm"
-              src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
+              avatarProps={{
+                src: "../assets/Logo.png",
+              }}
             />
           </DropdownTrigger>
           <DropdownMenu aria-label="Profile Actions" variant="flat">
             <DropdownItem key="profile" className="h-14 gap-2">
-              <p className="font-semibold">Sesión iniciada</p>
-              <p className="font-semibold">correo@escuela.com.mx</p>
+              <p className="font-semibold">Sesión iniciada como</p>
+              <p className="font-semibold">UdeG</p>
             </DropdownItem>
-            <DropdownItem key="settings">My Settings</DropdownItem>
-            <DropdownItem key="team_settings">Team Settings</DropdownItem>
-            <DropdownItem key="analytics">Analytics</DropdownItem>
-            <DropdownItem key="system">System</DropdownItem>
-            <DropdownItem key="configurations">Configurations</DropdownItem>
-            <DropdownItem key="help_and_feedback">Help & Feedback</DropdownItem>
+            <DropdownItem key="configurations">Configuraciones</DropdownItem>
+            <DropdownItem key="help_and_feedback">Ayuda y Feedback</DropdownItem>
             <DropdownItem key="logout" color="danger">
               Log Out
             </DropdownItem>
