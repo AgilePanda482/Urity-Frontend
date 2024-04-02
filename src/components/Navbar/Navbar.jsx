@@ -55,9 +55,7 @@ export default function NavbarComponent() {
               color="primary"
               name="UdeG"
               size="sm"
-              avatarProps={{
-                src: "../assets/Logo.png",
-              }}
+              src={photo}
             />
           </DropdownTrigger>
           <DropdownMenu aria-label="Profile Actions" variant="flat">
