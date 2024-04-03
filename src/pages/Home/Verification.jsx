@@ -1,28 +1,55 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import io from "socket.io-client";
 
 import NavbarComponent from "../../components/Navbar/Navbar";
 import CardResponse from "../../components/VerifyComps/CardResponse";
-// import Loading from "../../components/VerifyComps/Loading";
-// import ButtonVerify from "../../components/VerifyComps/ButtonVerify";
-
-import { Button } from "@nextui-org/react";
-import { Spinner } from "@nextui-org/react";
+import { Button, Spinner, Code } from "@nextui-org/react";
 
 function Verification() {
-  const socket = io("http://localhost:3000");
+  const [socket, setSocket] = useState(null);
   const [showSpinner, setShowSpinner] = useState(false);
+  const [responseText, setResponseText] = useState("");
+  const [responseColor, setResponseColor] = useState("");
+  const [showResponse, setShowResponse] = useState(false);
 
+  useEffect(() => {
+    const newSocket = io("http://localhost:3000");
+    setSocket(newSocket);
+
+    return () => {
+      newSocket.disconnect();
+    };
+  }, []);
 
   const handleVerify = () => {
     setShowSpinner(true);
 
-    socket.emit('verify', { verify: true });
+    socket.emit("verify", { verify: true });
     console.log("Verificando...");
 
-    socket.on('verifyUIDFromArduino', (data) => {
+    socket.on("verifyUIDFromArduino", (data) => {
       console.log(data);
-    });   
+      setShowSpinner(false);
+
+      if (data.error) {
+        setResponseText("La credencial no existe");
+        setResponseColor("danger");
+      } else if (data === "not found") {
+        setResponseText("No se encontró la credencial");
+        setResponseColor("warning");
+      } else {
+        setResponseText("La credencial está registrada");
+        setResponseColor("success");
+      }
+
+      socket.off("verifyUIDFromArduino");
+
+      setShowResponse(true);
+      setTimeout(() => {
+        // Ocultar el componente con el texto y color correspondientes
+        setShowResponse(false);
+      }, 5000); // Ocultar después de 5 segundos
+    });
   };
 
   return (
@@ -36,24 +63,20 @@ function Verification() {
               Verificación de credencial
             </h1>
             <p className="text-md text-gray-500 mt-2">
-              Presione el boton de verificación y coloque la credencial en el
+              Presione el botón de verificación y coloque la credencial en el
               lector.
             </p>
           </div>
 
-          <div className="flex flex-col justify-center items-center">
-            <CardResponse />
+          <div className="flex flex-col gap-4">
+            {showResponse && <Code color={responseColor}>{responseText}</Code>}
           </div>
 
           <div
-            className="flex hidden"
-            style={{ display: showSpinner ? "block" : "none" }}
+            className="flex"
+            style={{ display: showSpinner ? "flex" : "none" }}
           >
-            <Spinner
-              label="Espere..."
-              color="primary"
-              labelColor="primary"
-            />
+            <Spinner label="Espere..." color="primary" labelColor="primary" />
           </div>
 
           <div className="flex flex-wrap items-center">
