@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import io from "socket.io-client";
 
 import NavbarComponent from "../../components/Navbar/Navbar";
-import CardResponse from "../../components/VerifyComps/CardResponse";
 import { Button, Spinner, Code } from "@nextui-org/react";
 
 function Verification() {
@@ -11,6 +10,7 @@ function Verification() {
   const [responseText, setResponseText] = useState("");
   const [responseColor, setResponseColor] = useState("");
   const [showResponse, setShowResponse] = useState(false);
+  const [disableButton, setDisableButton] = useState(false);
 
   useEffect(() => {
     const newSocket = io("http://localhost:3000");
@@ -23,6 +23,7 @@ function Verification() {
 
   const handleVerify = () => {
     setShowSpinner(true);
+    setDisableButton(true);
 
     socket.emit("verify", { verify: true });
     console.log("Verificando...");
@@ -46,9 +47,9 @@ function Verification() {
 
       setShowResponse(true);
       setTimeout(() => {
-        // Ocultar el componente con el texto y color correspondientes
         setShowResponse(false);
-      }, 5000); // Ocultar después de 5 segundos
+        setDisableButton(false);
+      }, 5000);
     });
   };
 
@@ -85,6 +86,7 @@ function Verification() {
               variant="flat"
               radius="sm"
               onClick={handleVerify}
+              disabled={disableButton}
             >
               Verificar Credencial
             </Button>
