@@ -16,10 +16,11 @@ function Verification() {
 
   const handleVerify = () => {
     setShowSpinner(true);
-    socket.emit('verify, ( verify: true )');
+
+    socket.emit('verify', { verify: true });
     console.log("Verificando...");
 
-    socket.on('response', (data) => {
+    socket.on('verifyUIDFromArduino', (data) => {
       console.log(data);
     });   
   };
