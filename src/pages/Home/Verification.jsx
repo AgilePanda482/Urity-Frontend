@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import io from "socket.io-client";
 
 import NavbarComponent from "../../components/Navbar/Navbar";
 import CardResponse from "../../components/VerifyComps/CardResponse";
@@ -9,11 +10,18 @@ import { Button } from "@nextui-org/react";
 import { Spinner } from "@nextui-org/react";
 
 function Verification() {
+  const socket = io("http://localhost:3000");
   const [showSpinner, setShowSpinner] = useState(false);
+
 
   const handleVerify = () => {
     setShowSpinner(true);
+    socket.emit('verify, ( verify: true )');
     console.log("Verificando...");
+
+    socket.on('response', (data) => {
+      console.log(data);
+    });   
   };
 
   return (
@@ -32,9 +40,9 @@ function Verification() {
             </p>
           </div>
 
-          {/* <div className="flex flex-col justify-center items-center">
+          <div className="flex flex-col justify-center items-center">
             <CardResponse />
-          </div> */}
+          </div>
 
           <div
             className="flex hidden"
