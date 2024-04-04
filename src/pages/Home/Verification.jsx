@@ -3,14 +3,17 @@ import io from "socket.io-client";
 
 import NavbarComponent from "../../components/Navbar/Navbar";
 import { Button, Spinner, Code } from "@nextui-org/react";
+import VerifyCard from "../../components/VerifyComps/VerifyCard";
 
 function Verification() {
   const [socket, setSocket] = useState(null);
   const [showSpinner, setShowSpinner] = useState(false);
   const [responseText, setResponseText] = useState("");
   const [responseColor, setResponseColor] = useState("");
+  const [showCard, setShowCard] = useState(false);
   const [showResponse, setShowResponse] = useState(false);
   const [disableButton, setDisableButton] = useState(false);
+  const [verifyData, setVerifyData] = useState({});
 
   useEffect(() => {
     const newSocket = io("http://localhost:3000");
@@ -41,6 +44,8 @@ function Verification() {
       } else {
         setResponseText("La credencial está registrada");
         setResponseColor("success");
+        setShowCard(true);
+        setVerifyData(data);
       }
 
       socket.off("verifyUIDFromArduino");
@@ -48,6 +53,7 @@ function Verification() {
       setShowResponse(true);
       setTimeout(() => {
         setShowResponse(false);
+        setShowCard(false);
         setDisableButton(false);
       }, 5000);
     });
@@ -58,7 +64,7 @@ function Verification() {
       <NavbarComponent />
 
       <div className="flex justify-center items-center h-full w-full">
-        <div className="flex flex-col justify-between items-center h-5/6 w-11/12 my-10 p-5 md:w-8/12 xl:w-6/12 2xl:w-5/12 2xl:h-4/6 3xl:w-4/12 3xl:bg-slate-500">
+        <div className="flex flex-col justify-between items-center h-5/6 w-11/12 my-10 p-5 md:w-8/12 xl:w-6/12 2xl:w-5/12 2xl:h-4/6 3xl:w-4/12">
           <div className="flex flex-col justify-center items-center text-center">
             <h1 className="text-2xl text-white font-bold">
               Verificación de credencial
@@ -69,10 +75,19 @@ function Verification() {
             </p>
           </div>
 
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col justify-center items-center w-full gap-4">
             {showResponse && <Code color={responseColor}>{responseText}</Code>}
+            <div className="flex w-full">
+              {showCard && (
+                <VerifyCard
+                  showCard={showCard}
+                  userName={verifyData.Nombre}
+                  id={verifyData.Codigo}
+                  status={verifyData.DatoAcademico}
+                />
+              )}
+            </div>
           </div>
-
           <div
             className="flex"
             style={{ display: showSpinner ? "flex" : "none" }}
@@ -80,7 +95,7 @@ function Verification() {
             <Spinner label="Espere..." color="primary" labelColor="primary" />
           </div>
 
-          <div className="flex flex-wrap items-center">
+          <div className="flex">
             <Button
               color="primary"
               variant="flat"
