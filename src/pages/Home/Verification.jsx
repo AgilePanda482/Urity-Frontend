@@ -64,7 +64,7 @@ function Verification() {
       <NavbarComponent />
 
       <div className="flex justify-center items-center h-full w-full">
-        <div className="flex flex-col justify-between items-center h-5/6 w-11/12 my-10 p-5 md:w-8/12 xl:w-6/12 2xl:w-5/12 2xl:h-4/6 3xl:w-4/12">
+        <div className="flex flex-col justify-between items-center h-4/6 w-11/12 my-10 p-5 md:w-8/12 xl:w-6/12 2xl:w-5/12 2xl:h-4/6 3xl:w-4/12">
           <div className="flex flex-col justify-center items-center text-center">
             <h1 className="text-2xl text-white font-bold">
               Verificación de credencial
@@ -75,9 +75,9 @@ function Verification() {
             </p>
           </div>
 
-          <div className="flex flex-col justify-center items-center w-full gap-4">
+          <div className="flex flex-col justify-center items-center w-auto gap-4">
             {showResponse && <Code color={responseColor}>{responseText}</Code>}
-            <div className="flex w-full">
+            <div className="flex w-full justify-center items-center bg-black">
               {showCard && (
                 <VerifyCard
                   showCard={showCard}

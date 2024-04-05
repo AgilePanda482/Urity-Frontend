@@ -1,7 +1,7 @@
 
 function VerifyCard({ userName, id, status }) {
   
-    const photo = "https://rickandmortyapi.com/api/character/avatar/1.jpeg"
+    const photo = "https://rickandmortyapi.com/api/character/avatar/2.jpeg"
   return (
     // CARD CONTAINER
     <div
@@ -10,10 +10,12 @@ function VerifyCard({ userName, id, status }) {
         justifyContent: "center",
         alignItems: "center",
         height: "3.5em",
-        width: "100%",
+        width: "auto",
         padding: ".5em",
+        borderRadius: "3px",
         color: "white",
-        // backgroundColor: "green",
+        cursor: "pointer",
+        backgroundColor: "#070807",
       }}
     >
       {/* LEFT SIDE / CIRCLE / IMG  */}
@@ -40,7 +42,7 @@ function VerifyCard({ userName, id, status }) {
       {/* CENTER SIDE / NAME / ID  */}
       <div
         style={{
-          width: "78%",
+          width: "auto",
           // backgroundColor: 'teal',
           height: "100%",
           padding: "0 .2em 0 .35em",
