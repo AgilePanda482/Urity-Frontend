@@ -33,7 +33,7 @@ export default function Shift({ field, form: { touched, errors }, ...props }) {
   };
 
   return (
-    <div className="flex w-4/12 md:w-4/12 ">
+    <div className="flex w-4/12 md:w-4/12">
       <Autocomplete
         label="Turno"
         data-theme="dark"
@@ -48,7 +48,7 @@ export default function Shift({ field, form: { touched, errors }, ...props }) {
         {...props}
       >
         {(item) => (
-          <AutocompleteItem key={item.value}>{item.label}</AutocompleteItem>
+          <AutocompleteItem data-theme="dark" key={item.value}>{item.label}</AutocompleteItem>
         )}
       </Autocomplete>
     </div>
