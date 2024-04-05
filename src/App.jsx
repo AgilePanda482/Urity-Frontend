@@ -19,11 +19,11 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="*" element={<NotFound />} />
         <Route path="/verificar" element={<Verification />} />
+        <Route path="/usuarios" element={<Users />} />
 
         <Route element={<ProtectedRoute />}>
           <Route path="/home" element={<Home />} />
           <Route path="/añadir" element={<Add />} />
-          <Route path="/usuarios" element={<Users />} />
         </Route>
       </Routes>
     </AuthContextProvider>
