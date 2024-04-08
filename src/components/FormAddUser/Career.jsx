@@ -33,7 +33,7 @@ export default function Career({ field, form: { touched, errors }, ...props }) {
   };
 
   return (
-    <div className="flex w-8/12 md:w-8/12 ">
+    <div className="flex w-8/12 md:w-8/12">
       <Autocomplete
         label="Carrera"
         data-theme="dark"
@@ -47,9 +47,9 @@ export default function Career({ field, form: { touched, errors }, ...props }) {
         onClick={stopPropagation} // Stop propagation for click events
         {...props}
       >
-        {(item) => (
-          <AutocompleteItem key={item.label}>{item.label}</AutocompleteItem>
-        )}
+          {(item) => (
+            <AutocompleteItem key={item.label}>{item.label}</AutocompleteItem>
+          )}
       </Autocomplete>
     </div>
   );
