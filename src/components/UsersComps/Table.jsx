@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Table,
   TableHeader,
@@ -14,6 +14,7 @@ import {
 import { EditIcon } from "./EditIcon";
 import { DeleteIcon } from "./DeleteIcon";
 import { columns, users } from "./data";
+import { getAll } from "../../services/users";
 
 const statusColorMap = {
   dentro: "success",
@@ -24,10 +25,17 @@ const scrollbarStyle = {
   WebkitOverflowScrolling: "touch",
   scrollbarWidth: "thin",
   scrollbarColor: "#27272a #18181b",
-  
 };
 
 export default function UsersTable() {
+  useEffect(() => {
+    const loadUsers = async () => {
+      const { data } = await getAll();
+      console.log(data);
+    };
+    loadUsers();
+  }, []);
+
   const renderCell = React.useCallback((user, columnKey) => {
     const cellValue = user[columnKey];
 
@@ -36,7 +44,6 @@ export default function UsersTable() {
         return (
           <User
             avatarProps={{ radius: "full", src: user.avatar }}
-            description={user.email}
             name={cellValue}
           >
             {user.email}

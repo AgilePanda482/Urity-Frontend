@@ -210,13 +210,3 @@ const users = [
 ];
 
 export { columns, users };
-
-// TEL. 3314125348 / CORREO: israel.beltran6866@alumnos.udg.mx
-// CHÁVEZ DORADO DIEGO
-// TEL. 3333039446 / CORREO: diego.chavez6884@alumnos.udg.mx
-// GONZÁLEZ RINCÓN ABRAHAM EMMANUEL
-// TEL. 3339490533 / CORREO: abraham.gonzalez6862@alumnos.udg.mx
-// ORTIZ CABRERA ARANTZA
-// TEL. 3318028623 / CORREO: arantza.ortiz6954@alumnos.udg.mx
-// RICO VELA DAVID SEBASTIÁN
-// TEL. 3326370169 / CORREO: david.rico6961@alumnos.udg.mx
