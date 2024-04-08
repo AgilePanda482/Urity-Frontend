@@ -40,7 +40,7 @@ export default function Shift({ field, form: { touched, errors }, ...props }) {
         size="sm"
         inputValue={inputValue}
         items={items}
-        selectedKey={field.value}
+        selectedKey={field.label}
         onInputChange={onInputChange}
         onSelectionChange={handleChange}
         onKeyDown={stopPropagation} // Stop propagation for key events
@@ -48,7 +48,7 @@ export default function Shift({ field, form: { touched, errors }, ...props }) {
         {...props}
       >
         {(item) => (
-          <AutocompleteItem data-theme="dark" key={item.value}>{item.label}</AutocompleteItem>
+          <AutocompleteItem data-theme="dark" key={item.label}>{item.label}</AutocompleteItem>
         )}
       </Autocomplete>
     </div>
