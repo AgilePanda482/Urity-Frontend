@@ -14,6 +14,7 @@ import { EditIcon } from "./EditIcon";
 import { DeleteIcon } from "./DeleteIcon";
 import { columns } from "./data";
 import { getAll } from "../../services/users";
+import { deleteUser } from "../../services/users";
 
 const statusColorMap = {
   Dentro: "success",
@@ -42,6 +43,20 @@ export default function UsersTable() {
     };
     loadUsers();
   }, []);
+
+  const deleteUserFunction = async (id) => {
+    try {
+      // Optimistic UI update
+      const updatedUserData = userData.filter((user) => user.codigo !== id);
+      setUserData(updatedUserData);
+
+      // Make API call to delete the user
+      await deleteUser(id);
+      console.log("User deleted successfully");
+    } catch (error) {
+      console.error("Error deleting user:", error);
+    }
+  };
 
   const avatarPicture = () => {
     const num = Math.floor(Math.random() * 300);
@@ -93,7 +108,11 @@ export default function UsersTable() {
             </Tooltip>
             <Tooltip color="danger" content="Eliminar alumno">
               <span className="text-lg text-danger cursor-pointer active:opacity-50">
-                <DeleteIcon />
+                <DeleteIcon
+                  onClick={() => {
+                    deleteUserFunction(user.codigo);
+                  }}
+                />
               </span>
             </Tooltip>
           </div>
