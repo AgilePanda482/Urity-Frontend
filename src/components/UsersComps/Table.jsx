@@ -46,17 +46,19 @@ export default function UsersTable() {
 
   const deleteUserFunction = async (id) => {
     try {
-      // Optimistic UI update
       const updatedUserData = userData.filter((user) => user.codigo !== id);
       setUserData(updatedUserData);
 
-      // Make API call to delete the user
       await deleteUser(id);
       console.log("User deleted successfully");
     } catch (error) {
       console.error("Error deleting user:", error);
     }
   };
+
+  // const updateUser = (user) => {
+  //   console.log(user);
+  // };
 
   const avatarPicture = () => {
     const num = Math.floor(Math.random() * 300);
@@ -103,7 +105,7 @@ export default function UsersTable() {
           <div className="relative flex items-center gap-3">
             <Tooltip content="Editar datos" color="default">
               <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
-                <EditIcon />
+                <EditIcon onClick={() => {}} />
               </span>
             </Tooltip>
             <Tooltip color="danger" content="Eliminar alumno">
