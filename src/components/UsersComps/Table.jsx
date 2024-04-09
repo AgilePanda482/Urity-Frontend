@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Table,
   TableHeader,
@@ -9,18 +9,18 @@ import {
   User,
   Chip,
   Tooltip,
-  getKeyValue,
 } from "@nextui-org/react";
 import { EditIcon } from "./EditIcon";
 import { DeleteIcon } from "./DeleteIcon";
-import { columns, users } from "./data";
+import { columns } from "./data";
 import { getAll } from "../../services/users";
 
 const statusColorMap = {
-  dentro: "success",
-  fuera: "danger",
-  desconocido: "warning",
+  Dentro: "success",
+  Fuera: "danger",
+  Desconocido: "warning",
 };
+
 const scrollbarStyle = {
   WebkitOverflowScrolling: "touch",
   scrollbarWidth: "thin",
@@ -28,47 +28,61 @@ const scrollbarStyle = {
 };
 
 export default function UsersTable() {
+  const [userData, setUserData] = useState([]);
+
   useEffect(() => {
     const loadUsers = async () => {
-      const { data } = await getAll();
-      console.log(data);
+      try {
+        const { data } = await getAll();
+        // console.log(data);
+        setUserData(data);
+      } catch (error) {
+        console.error("Error fetching users:", error);
+      }
     };
     loadUsers();
   }, []);
 
-  const renderCell = React.useCallback((user, columnKey) => {
+  const avatarPicture = () => {
+    const num = Math.floor(Math.random() * 300);
+    return `https://rickandmortyapi.com/api/character/avatar/${num}.jpeg`;
+  };
+
+  const renderCell = (user, columnKey) => {
     const cellValue = user[columnKey];
 
     switch (columnKey) {
-      case "name":
+      //Nombre - Name
+      case "nombres":
         return (
           <User
-            avatarProps={{ radius: "full", src: user.avatar }}
+            avatarProps={{ radius: "full", src: avatarPicture() }}
             name={cellValue}
-          >
-            {user.email}
-          </User>
+          ></User>
         );
+      //Carrera - Role
       case "role":
         return (
           <div className="flex flex-col">
-            <p className="text-bold text-sm capitalize">{cellValue}</p>
+            <p className="text-bold text-sm capitalize">Alumno</p>
             <p className="text-bold text-sm capitalize text-default-400">
-              {user.team}
+              {user.carrera}
             </p>
           </div>
         );
-      case "status":
+      //localizacionAlumno - Status
+      case "localizacionAlumno":
         return (
           <Chip
             className="capitalize"
-            color={statusColorMap[user.status]}
+            color={statusColorMap[user.localizacionAlumno]}
             size="sm"
             variant="flat"
           >
             {cellValue}
           </Chip>
         );
+      //Edición - Actions
       case "actions":
         return (
           <div className="relative flex items-center gap-3">
@@ -87,7 +101,7 @@ export default function UsersTable() {
       default:
         return cellValue;
     }
-  }, []);
+  };
 
   return (
     <div
@@ -107,11 +121,11 @@ export default function UsersTable() {
             </TableColumn>
           )}
         </TableHeader>
-        <TableBody items={users}>
+        <TableBody items={userData}>
           {(item) => (
             <TableRow
-              key={item.id}
-              className="hover:bg-zinc-900 hover:cursor-pointer hover:scale-105 transition "
+              key={item.codigo}
+              className="hover:bg-zinc-900 hover:cursor-pointer hover:scale-105 transition duration-300 ease-in-out"
             >
               {(columnKey) => (
                 <TableCell>{renderCell(item, columnKey)}</TableCell>
