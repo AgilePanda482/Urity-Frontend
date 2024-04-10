@@ -38,13 +38,14 @@ export default function Grado({ field, form: { touched, errors }, ...props }) {
         label="Grado"
         data-theme="dark"
         size="sm"
+        isRequired
         inputValue={inputValue}
         items={items}
         selectedKey={field.value}
         onInputChange={onInputChange}
         onSelectionChange={handleChange}
-        onKeyDown={stopPropagation} // Stop propagation for key events
-        onClick={stopPropagation} // Stop propagation for click events
+        onKeyDown={stopPropagation} 
+        onClick={stopPropagation} 
         {...props}
       >
         {(item) => (

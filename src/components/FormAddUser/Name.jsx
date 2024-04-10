@@ -8,6 +8,7 @@ export default function Nombre({ field, form: { touched, errors }, ...props }) {
         label="Nombre completo"
         color="default"
         bordered
+        isRequired
         size="sm"
         {...field} // Pass field props to Input component
         {...props} // Pass other props

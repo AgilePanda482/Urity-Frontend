@@ -12,6 +12,7 @@ export default function CredencialUID({
         type="text"
         label="ID de la credencial"
         color="default"
+        isRequired
         size="sm"
         bordered
         {...field} // Pass field props to Input component

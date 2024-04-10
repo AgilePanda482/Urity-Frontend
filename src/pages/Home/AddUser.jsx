@@ -31,6 +31,7 @@ function Add() {
 
   const onSubmit = async (values, actions) => {
     actions.setSubmitting(false);
+    console.log(values);
     const res = await createUser(values);
     console.log(res);
   };

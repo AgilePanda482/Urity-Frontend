@@ -38,17 +38,18 @@ export default function Career({ field, form: { touched, errors }, ...props }) {
         label="Carrera"
         data-theme="dark"
         size="sm"
+        isRequired
         inputValue={inputValue}
         items={items}
-        selectedKey={field.label}
+        selectedKey={field.value}
         onInputChange={onInputChange}
         onSelectionChange={handleChange}
-        onKeyDown={stopPropagation} // Stop propagation for key events
-        onClick={stopPropagation} // Stop propagation for click events
+        onKeyDown={stopPropagation} 
+        onClick={stopPropagation}
         {...props}
       >
           {(item) => (
-            <AutocompleteItem key={item.label}>{item.label}</AutocompleteItem>
+            <AutocompleteItem key={item.value}>{item.label}</AutocompleteItem>
           )}
       </Autocomplete>
     </div>

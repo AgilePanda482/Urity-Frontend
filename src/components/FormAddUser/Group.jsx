@@ -9,6 +9,7 @@ export default function Grupo({ field, form: { touched, errors }, ...props }) {
         label="Grupo"
         color="default"
         size="sm"
+        isRequired
         bordered
         {...field} // Pass field props to Input component
         {...props}
