@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-// import { io } from "socket.io-client";
+import { io } from "socket.io-client";
 import { homeAccess } from "../../services/users";
 
 import NavbarComponent from "../../components/Navbar/Navbar";
 import AccessCard from "../../components/Access/AccessCard";
 
-// const socket = io("http://localhost:3000");
+const socket = io("http://localhost:3000");
 
 const scrollbarStyle = {
   WebkitOverflowScrolling: "touch",
@@ -17,18 +17,20 @@ function Home() {
   // Define el estado para almacenar el objeto
   const [theObject, setTheObject] = useState([]);
 
-  // useEffect(() => {
-  //   // Actualiza el estado con los datos recibidos
-  //   const receiveData = (data) => {
-  //     setTheObject((prevData) => [...prevData, data]);
-  //   };
-  //   // Añade la función 'receiveData' como escucha del evento 'UID'
-  //   socket.on("UID", receiveData);
-  //   // Limpia la escucha del evento 'UID' cuando el componente se desmonta
-  //   return () => {
-  //     socket.off("UID", receiveData);
-  //   };
-  // }, []);
+  useEffect(() => {
+    // Añade la función 'receiveData' como escucha del evento 'UID'
+        socket.on("UID", (data) => {
+      try {
+        setTheObject(data);
+      } catch (error) {
+        console.error("Error fetching users:", error);
+      }
+    });
+    // Limpia la escucha del evento 'UID' cuando el componente se desmonta
+    return () => {
+      socket.off("UID");
+    };
+  }, []);
 
   useEffect(() => {
     const loadUsers = async () => {
