@@ -15,6 +15,8 @@ import { DeleteIcon } from "./DeleteIcon";
 import { columns } from "./data";
 import { getAll } from "../../services/users";
 import { deleteUser } from "../../services/users";
+import { io } from "socket.io-client";
+const socket = io("http://localhost:3000");
 
 const statusColorMap = {
   Dentro: "success",
@@ -30,9 +32,23 @@ const scrollbarStyle = {
 
 export default function UsersTable() {
   const [userData, setUserData] = useState([]);
+  
+  useEffect(() => {
+    socket.on('changeStatusFront', (data) => {
+      try {
+        setUserData(data);
+      } catch (error) {
+        console.error("Error fetching users:", error);
+      }
+    });
+    // Función de limpieza para remover el listener
+    return () => {
+      socket.off('changeStatusFront');
+    };
+  }, []);
 
   useEffect(() => {
-    const loadUsers = async () => {
+  const loadUsers = async () => {
       try {
         const { data } = await getAll();
         // console.log(data);
