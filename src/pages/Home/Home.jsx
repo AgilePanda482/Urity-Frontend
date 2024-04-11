@@ -5,6 +5,12 @@ import AccessCard from "../../components/Access/AccessCard";
 
 const socket = io("http://localhost:3000");
 
+const scrollbarStyle = {
+  WebkitOverflowScrolling: "touch",
+  scrollbarWidth: "thin",
+  scrollbarColor: "#121212 #040404",
+};
+
 function Home() {
   // Define el estado para almacenar el objeto
   const [theObject, setTheObject] = useState([]);
@@ -34,10 +40,15 @@ function Home() {
       {/* NAVBAR */}
       <NavbarComponent />
 
-        {/* CARD CONTAINER */}
-        <div 
-          className="flex flex-col-reverse justify-end items-center gap-3 
-          w-10/12 md:w-1/2 h-3/4  rounded-2xl overflow-hidden mt-20">
+      {/* CARD CONTAINER */}
+      <div
+        className="flex justify-center w-11/12 md:w-1/2 h-3/4 rounded-2xl mt-20 overflow-hidden overflow-y-scroll"
+        style={scrollbarStyle}
+      >
+        <div
+          className="flex flex-col-reverse w-full justify-end items-center gap-3 h-full py-4"
+          style={{ backgroundColor: "#010101" }}
+        >
           {theObject.map((item, index) => (
             <AccessCard
               key={index}
@@ -50,6 +61,7 @@ function Home() {
             />
           ))}
         </div>
+      </div>
     </div>
   );
 }

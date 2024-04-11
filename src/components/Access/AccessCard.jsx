@@ -16,7 +16,6 @@ function AccessCard({ userName, id, status, species, image, time }) {
         width: "100%",
         padding: ".5em",
         color: "white",
-        backgroundColor: "rgba(0, 0, 0, 0.7)",
       }}
     >
       {/* LEFT SIDE / CIRCLE / IMG  */}
