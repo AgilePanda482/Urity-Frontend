@@ -7,6 +7,7 @@ export default function Codigo({ field, form: { touched, errors }, ...props }) {
       <Input
         type="number"
         label="Código"
+        isRequired
         color="default"
         bordered
         size="sm"

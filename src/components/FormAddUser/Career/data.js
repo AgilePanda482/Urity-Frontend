@@ -7,12 +7,17 @@ export const options = [
   },
   {
     label: "Diseño Industrial",
-    value: "BTDI",
+    value: "BTI",
     description: "Bachiderato Técnico en Diseño Industrial",
   },
   {
     label: "Desarrollo de Software",
-    value: "BTDS",
+    value: "BTW",
     description: "Bachiderato Técnico en Desarrollo de Software",
+  },
+  {
+    label: "General por Áreas interdisciplinarias",
+    value: "BGA",
+    description: "Bachiderato General por Áreas interdisciplinarias",
   },
 ];

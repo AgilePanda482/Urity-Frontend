@@ -1,10 +1,19 @@
 import arrowDown from "../../assets/arrowDown.svg";
 import arrowUp from "../../assets/arrowUp.svg";
 
-function AccessCard({ userName, id, status, species, image, time }) {
-  
-  const arrow = status === "Alive" ? arrowUp : arrowDown;
-  
+function AccessCard({
+  image,
+  userName,
+  id,
+  grade,
+  group,
+  career,
+  turn,
+  status,
+  time,
+}) {
+  const arrow = status === 1 ? arrowUp : arrowDown;
+
   return (
     // CARD CONTAINER
     <div
@@ -16,7 +25,6 @@ function AccessCard({ userName, id, status, species, image, time }) {
         width: "100%",
         padding: ".5em",
         color: "white",
-        backgroundColor: "rgba(0, 0, 0, 0.7)",
       }}
     >
       {/* LEFT SIDE / CIRCLE / IMG  */}
@@ -70,12 +78,18 @@ function AccessCard({ userName, id, status, species, image, time }) {
             gap: "1em",
             width: "100%",
             height: "50%",
-            // backgroundColor: 'orange',
+            fontSize: ".9em",
+            alignItems: "flex-start",
+            padding: ".2em 0 0 0",
           }}
+          className="text-zinc-400"
         >
           <p>{id}</p>
-          <p>{species}</p>
-          <p>{status}</p>
+          <p>
+            {grade}-{group}
+          </p>
+          <p>{career}</p>
+          <p>T/{turn}</p>
         </div>
       </div>
 
