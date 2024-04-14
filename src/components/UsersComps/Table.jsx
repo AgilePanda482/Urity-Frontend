@@ -11,7 +11,7 @@ import {
   Tooltip,
 } from "@nextui-org/react";
 import { EditIcon } from "./EditIcon";
-import EditPopUp from "./EditPopUp"; // Import your modal component
+import EditPopUp from "./EditPopUp";
 import { DeleteIcon } from "./DeleteIcon";
 import { columns } from "./data";
 import { getAll } from "../../services/users";
@@ -34,8 +34,8 @@ const scrollbarStyle = {
 
 export default function UsersTable() {
   const [userData, setUserData] = useState([]);
-  const [isModalOpen, setIsModalOpen] = useState(false); // State variable to track modal open/close
-  const [selectedUserId, setSelectedUserId] = useState(null); // State variable to track selected user ID
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedUserId, setSelectedUserId] = useState(null); 
 
   useEffect(() => {
     socket.on("changeStatusFront", (data) => {
@@ -45,7 +45,7 @@ export default function UsersTable() {
         console.error("Error fetching users:", error);
       }
     });
-    // Función de limpieza para remover el listener
+
     return () => {
       socket.off("changeStatusFront");
     };
@@ -66,13 +66,9 @@ export default function UsersTable() {
 
   const handleEdit = (userUId) => { //Parametro es IUD Tarjeta
     setSelectedUserId(userUId);
-    // console.log(userUId);
-    setIsModalOpen(true); // Open modal when EditIcon is clicked
-  };
 
-  // const updateUser = (user) => {
-  //   console.log(user);
-  // };
+    setIsModalOpen(true); 
+  };
 
   const deleteUserFunction = async (id) => {
     try {
@@ -81,6 +77,8 @@ export default function UsersTable() {
 
       await deleteUser(id);
       console.log("User deleted successfully");
+      //recargar pagina
+      window.location.reload();
     } catch (error) {
       console.error("Error deleting user:", error);
     }
