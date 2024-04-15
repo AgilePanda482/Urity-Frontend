@@ -64,6 +64,9 @@ function Verification() {
         setShowCard(true);
         setVerifyData(data);
       }
+
+      socket.off("UIDFromArduino");
+      // socket.off("verifyCard");
   
       setShowResponse(true);
       setTimeout(() => {
