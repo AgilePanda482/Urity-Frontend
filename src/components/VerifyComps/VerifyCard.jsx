@@ -1,5 +1,5 @@
 
-function VerifyCard({ userName, id, status }) {
+function VerifyCard({ userName, code, career, shift, grade, group }) {
   
     const photo = "https://rickandmortyapi.com/api/character/avatar/2.jpeg"
   return (
@@ -74,8 +74,10 @@ function VerifyCard({ userName, id, status }) {
             // backgroundColor: 'orange',
           }}
         >
-          <p>{id}</p>
-          <p>{status}</p>
+          <p>{code}</p>
+          <p>{career}</p>
+          <p>{shift}</p>
+          <p>{grade}-{group}</p>
         </div>
       </div>
 
