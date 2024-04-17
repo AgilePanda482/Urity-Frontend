@@ -3,10 +3,13 @@ function VerifyCard({ userName, code, career, shift, grade, group, location }) {
   const locationStyles = {
     width: ".8em", 
     height: ".8em",
-    backgroundColor: location === true ? "#12a150" : "rgb(185 28 28)",
+    backgroundColor: location === "Dentro" ? "#12a150" : "rgb(185 28 28)",
     borderRadius: "50%",
+    
     marginLeft: "1em",
   };
+
+  shift === "Matutino" ? (shift = "M") : (shift = "V");
 
   return (
     // CARD CONTAINER

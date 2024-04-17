@@ -73,7 +73,7 @@ function Verification() {
         setShowResponse(false);
         setShowCard(false);
         setDisableButton(false);
-      }, 60000);
+      }, 10000);
     });
   };
   
@@ -106,7 +106,7 @@ function Verification() {
                   grade={verifyData.grado}
                   group={verifyData.grupo}
                   shift={verifyData.turno}
-                  location={false}
+                  location={verifyData.localizacionAlumno}
                 />
               )}
             </div>
