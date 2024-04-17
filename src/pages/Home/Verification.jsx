@@ -27,14 +27,31 @@ function Verification() {
   const handleVerify = () => {
     setShowSpinner(true);
     setDisableButton(true);
-
-    socket.emit("verify", { verify: true });
-    console.log("Verificando...");
-
-    socket.on("verifyUIDFromArduino", (data) => {
+  
+    // Start a 10-second timeout
+    const cardTimeout = setTimeout(() => {
+      // This code will execute after 10 seconds if no card is detected
+      setShowSpinner(false);
+      setResponseText("No se encontró la credencial");
+      setResponseColor("warning");
+      setShowResponse(true);
+  
+      // Set a timeout to hide the message and re-enable the button after 5 seconds
+      setTimeout(() => {
+        setShowResponse(false);
+        setDisableButton(false);
+      }, 5000);
+    }, 10000);
+  
+    socket.emit("verifyCard", { verify: true });
+    console.log("Esperando una credencial...");
+  
+    socket.on("UIDFromArduino", (data) => {
+      // Clear the 10-second timeout once you receive the response from the socket
+      clearTimeout(cardTimeout);
       console.log(data);
       setShowSpinner(false);
-
+  
       if (data.error) {
         setResponseText("La credencial no existe");
         setResponseColor("danger");
@@ -48,16 +65,18 @@ function Verification() {
         setVerifyData(data);
       }
 
-      socket.off("verifyUIDFromArduino");
-
+      socket.off("UIDFromArduino");
+      // socket.off("verifyCard");
+  
       setShowResponse(true);
       setTimeout(() => {
         setShowResponse(false);
         setShowCard(false);
         setDisableButton(false);
-      }, 5000);
+      }, 10000);
     });
   };
+  
 
   return (
     <div className="flex flex-col justify-start items-center bg-black h-screen w-full">
@@ -81,9 +100,13 @@ function Verification() {
               {showCard && (
                 <VerifyCard
                   showCard={showCard}
-                  userName={verifyData.Nombre}
-                  id={verifyData.Codigo}
-                  status={verifyData.DatoAcademico}
+                  userName={verifyData.nombres}
+                  code={verifyData.codigo}
+                  career={verifyData.carrera}
+                  grade={verifyData.grado}
+                  group={verifyData.grupo}
+                  shift={verifyData.turno}
+                  location={verifyData.localizacionAlumno}
                 />
               )}
             </div>

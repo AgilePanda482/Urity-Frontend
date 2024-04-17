@@ -1,7 +1,16 @@
+function VerifyCard({ userName, code, career, shift, grade, group, location }) {
+  const photo = "https://rickandmortyapi.com/api/character/avatar/2.jpeg";
+  const locationStyles = {
+    width: ".8em", 
+    height: ".8em",
+    backgroundColor: location === "Dentro" ? "#12a150" : "rgb(185 28 28)",
+    borderRadius: "50%",
+    
+    marginLeft: "1em",
+  };
 
-function VerifyCard({ userName, id, status }) {
-  
-    const photo = "https://rickandmortyapi.com/api/character/avatar/2.jpeg"
+  shift === "Matutino" ? (shift = "M") : (shift = "V");
+
   return (
     // CARD CONTAINER
     <div
@@ -9,10 +18,10 @@ function VerifyCard({ userName, id, status }) {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        height: "3.5em",
+        height: "4.5em",
         width: "auto",
-        padding: ".5em",
-        borderRadius: "3px",
+        padding: "1em 2em",
+        borderRadius: "1em",
         color: "white",
         cursor: "pointer",
         backgroundColor: "#070807",
@@ -22,7 +31,7 @@ function VerifyCard({ userName, id, status }) {
       <div
         style={{
           width: "2.5em",
-          backgroundColor: 'gray',
+          backgroundColor: "gray",
           height: "100%",
           borderRadius: "50%",
           overflow: "hidden",
@@ -68,14 +77,29 @@ function VerifyCard({ userName, id, status }) {
         <div
           style={{
             display: "flex",
+            alignItems: "center",
             gap: "1em",
             width: "100%",
             height: "50%",
             // backgroundColor: 'orange',
+            color: "#a9a9a9",
+            fontSize: "0.85em",
           }}
         >
-          <p>{id}</p>
-          <p>{status}</p>
+          <p
+            style={{
+              color: "#a9a9a9",
+              letterSpacing: "0.05em",
+            }}
+          >
+            {code}
+          </p>
+          <p>{career}</p>
+          <p>
+            {grade}-{group}
+          </p>
+          <p>T/{shift}</p>
+          <div style={locationStyles}></div>
         </div>
       </div>
 

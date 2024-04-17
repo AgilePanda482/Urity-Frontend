@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Formik, Form, Field } from "formik";
 
 import { createUser } from "../../services/users";
@@ -29,12 +29,45 @@ function Add() {
     masterKey: "",
   };
 
+  const [showMessage, setShowMessage] = useState(false);
+  const [message, setMessage] = useState("");
+  const [messageType, setMessageType] = useState(""); // 'success' or 'error'
+
+  const windowResponse = {
+    position: "absolute",
+    top: "14%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    zIndex: "9999",
+  };
+
   const onSubmit = async (values, actions) => {
     actions.setSubmitting(false);
     console.log(values);
-    const res = await createUser(values);
-    console.log(res);
+    try {
+      const res = await createUser(values);
+      console.log(res);
+      setMessage(`El alumno ${values.name} fue agregado exitosamente.`);
+      setMessageType("success");
+      actions.resetForm();
+    } catch (error) {
+      console.error(error);
+      setMessage("Hubo un error al agregar el usuario.");
+      setMessageType("error");
+    } finally {
+      setShowMessage(true);
+    }
   };
+
+  useEffect(() => {
+    if (showMessage) {
+      const timer = setTimeout(() => {
+        setShowMessage(false);
+      }, 5000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [showMessage]);
 
   return (
     <div className="flex flex-col justify-start items-center bg-black h-screen w-full">
@@ -89,6 +122,19 @@ function Add() {
           )}
         </Formik>
       </div>
+
+      {showMessage && (
+        <div
+          className={`message ${
+            messageType === "success"
+              ? "border-2 border-green-500 bg-green-950"
+              : "border-2 border-rose-500 bg-rose-900"
+          } flex justify-center items-center text-sm w-auto h-10 text-slate-200 p-4 rounded-md`}
+          style={windowResponse}
+        >
+          <p>{message}</p>
+        </div>
+      )}
     </div>
   );
 }
