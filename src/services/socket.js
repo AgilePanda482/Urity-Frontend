@@ -1,0 +1,1 @@
+export const socketlink = "http://localhost:3000";

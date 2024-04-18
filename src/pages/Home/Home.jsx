@@ -4,8 +4,9 @@ import { homeAccess } from "../../services/users";
 
 import NavbarComponent from "../../components/Navbar/Navbar";
 import AccessCard from "../../components/Access/AccessCard";
+import { socketlink } from "../../services/socket";
 
-const socket = io("http://localhost:3000");
+const socket = io(socketlink);
 
 const scrollbarStyle = {
   WebkitOverflowScrolling: "touch",

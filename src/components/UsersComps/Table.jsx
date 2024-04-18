@@ -17,8 +17,9 @@ import { columns } from "./data";
 import { getAll } from "../../services/users";
 import { deleteUser } from "../../services/users";
 import { io } from "socket.io-client";
+import { socketlink } from "../../services/socket";
 
-const socket = io("http://localhost:3000");
+const socket = io(socketlink);
 
 const statusColorMap = {
   Dentro: "success",
