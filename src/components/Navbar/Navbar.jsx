@@ -100,6 +100,21 @@ export default function NavbarComponent() {
           </DropdownMenu>
         </Dropdown>
       </NavbarContent>
+
+      <NavbarMenu data-theme="dark" className="gap-4">
+        <NavbarMenuItem>
+          <NavLink to="/home" className="text-2xl nav-link cursor-pointer">Home</NavLink>
+        </NavbarMenuItem>
+        <NavbarMenuItem>
+          <NavLink to="/añadir" className="text-2xl nav-link cursor-pointer">Añadir</NavLink>
+        </NavbarMenuItem>
+        <NavbarMenuItem>
+          <NavLink to="/verificar" className="text-2xl nav-link cursor-pointer">Verificar</NavLink>
+        </NavbarMenuItem>
+        <NavbarMenuItem>
+          <NavLink to="/usuarios" className="text-2xl nav-link cursor-pointer">Usuarios</NavLink>
+        </NavbarMenuItem>
+      </NavbarMenu>
     </Navbar>
   );
 }
