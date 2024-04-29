@@ -4,6 +4,7 @@ import io from "socket.io-client";
 import NavbarComponent from "../../components/Navbar/Navbar";
 import { Button, Spinner, Code } from "@nextui-org/react";
 import VerifyCard from "../../components/VerifyComps/VerifyCard";
+import { socketlink } from "../../services/socket";
 
 function Verification() {
   const [socket, setSocket] = useState(null);
@@ -16,7 +17,7 @@ function Verification() {
   const [verifyData, setVerifyData] = useState({});
 
   useEffect(() => {
-    const newSocket = io("http://localhost:3000");
+    const newSocket = io(socketlink);
     setSocket(newSocket);
 
     return () => {

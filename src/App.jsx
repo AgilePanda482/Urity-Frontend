@@ -10,7 +10,6 @@ import Add from "./pages/Home/AddUser";
 import Verification from "./pages/Home/Verification";
 import Users from "./pages/Home/Users";
 
-
 function App() {
   return (
     <AuthContextProvider>
@@ -18,12 +17,12 @@ function App() {
         <Route path="/" element={<Login />} />
         <Route path="/login" element={<Login />} />
         <Route path="*" element={<NotFound />} />
-        <Route path="/verificar" element={<Verification />} />
-        <Route path="/usuarios" element={<Users />} />
 
         <Route element={<ProtectedRoute />}>
           <Route path="/home" element={<Home />} />
           <Route path="/añadir" element={<Add />} />
+          <Route path="/verificar" element={<Verification />} />
+          <Route path="/usuarios" element={<Users />} />
         </Route>
       </Routes>
     </AuthContextProvider>
