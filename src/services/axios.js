@@ -1,7 +1,8 @@
 import axios from "axios";
+import { URL_FRONT } from "../config";
 
 const instance = axios.create({
-    baseURL: import.meta.env.VITE_APIREST,
+    baseURL: URL_FRONT + "/api",
     withCredentials: true,
 })
 

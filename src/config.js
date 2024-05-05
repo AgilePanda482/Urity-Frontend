@@ -1,0 +1,1 @@
+export const URL_FRONT = import.meta.env.VITE_URL_FRONT

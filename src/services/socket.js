@@ -1,2 +1,4 @@
-export const socketlink = import.meta.env.VITE_APIREST;
+import { URL_FRONT } from "../config"
+
+export const socketlink = URL_FRONT
 
