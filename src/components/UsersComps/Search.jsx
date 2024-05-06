@@ -16,6 +16,7 @@ export default function Search() {
     socket.emit('searchUserBack', value);
 
     return () => socket.off('searchUserBack');
+    
   };
 
 
