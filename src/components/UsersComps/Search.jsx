@@ -1,8 +1,35 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Input } from "@nextui-org/react";
 import { SearchIcon } from "./SearchIcon.jsx";
+import { io } from "socket.io-client";
+import { socketlink } from "../../services/socket.js";
+
+const socket = io(socketlink);
 
 export default function Search() {
+  const [inputValue, setInputValue] = useState('');
+
+  const handleInputChange = (e) => {
+    const value = e.target.value;
+    setInputValue(value);
+    // Emitir el valor del input al backend
+    socket.emit('searchUserBack', value);
+
+    return () => socket.off('searchUserBack');
+  };
+
+
+  useEffect(() => {
+    // Escuchar eventos desde el backend
+    socket.on('searchUserFront', message => {
+      console.log(message);
+    });
+
+    // Limpiar el listener al desmontar el componente
+    return () => socket.off('searchUserFront');
+  }, []);
+
+
   return (
     <div
       className="w-full h-auto rounded-2xl flex justify-center items-center text-white"
@@ -11,6 +38,8 @@ export default function Search() {
     >
       <Input
         label="Buscar alumno"
+        value={inputValue}
+        onChange={handleInputChange}
         className=""
         isClearable
         radius="lg"
