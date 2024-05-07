@@ -16,16 +16,21 @@ import {
   Avatar,
 } from "@nextui-org/react";
 import { UrityLogo } from "./Logo.jsx";
+import universidad from "../../assets/descarga.png";
+import leones from "../../assets/leones.svg";
 import { NavLink } from "react-router-dom";
-import UdeG from "../../assets/UdeG.svg";
+import { transform } from "framer-motion";
 
 export default function NavbarComponent() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  // const pic = user;
+  const photo = leones;
+  // const photo = universidad;
 
   const activeStyles = {
     color: "var(--nextui-colors-primary)",
   };
-  const photo = UdeG;
+
   // eslint-disable-next-line react/no-unknown-property
   <style jsx global>{`
     .active {
@@ -88,14 +93,14 @@ export default function NavbarComponent() {
           <DropdownMenu aria-label="Profile Actions" variant="flat">
             <DropdownItem key="profile" className="h-14 gap-2">
               <p className="font-semibold">Sesión iniciada como</p>
-              <p className="font-semibold">UdeG</p>
+              <p className="font-semibold">UdeG Prepa 17</p>
             </DropdownItem>
             <DropdownItem key="configurations">Configuraciones</DropdownItem>
             <DropdownItem key="help_and_feedback">
               Ayuda y Feedback
             </DropdownItem>
             <DropdownItem key="logout" color="danger">
-              Log Out
+              Cerrar Sesión
             </DropdownItem>
           </DropdownMenu>
         </Dropdown>
@@ -103,16 +108,24 @@ export default function NavbarComponent() {
 
       <NavbarMenu data-theme="dark" className="gap-4">
         <NavbarMenuItem>
-          <NavLink to="/home" className="text-2xl nav-link cursor-pointer">Home</NavLink>
+          <NavLink to="/home" className="text-2xl nav-link cursor-pointer">
+            Home
+          </NavLink>
         </NavbarMenuItem>
         <NavbarMenuItem>
-          <NavLink to="/añadir" className="text-2xl nav-link cursor-pointer">Añadir</NavLink>
+          <NavLink to="/añadir" className="text-2xl nav-link cursor-pointer">
+            Añadir
+          </NavLink>
         </NavbarMenuItem>
         <NavbarMenuItem>
-          <NavLink to="/verificar" className="text-2xl nav-link cursor-pointer">Verificar</NavLink>
+          <NavLink to="/verificar" className="text-2xl nav-link cursor-pointer">
+            Verificar
+          </NavLink>
         </NavbarMenuItem>
         <NavbarMenuItem>
-          <NavLink to="/usuarios" className="text-2xl nav-link cursor-pointer">Usuarios</NavLink>
+          <NavLink to="/usuarios" className="text-2xl nav-link cursor-pointer">
+            Usuarios
+          </NavLink>
         </NavbarMenuItem>
       </NavbarMenu>
     </Navbar>

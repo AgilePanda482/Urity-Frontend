@@ -46,10 +46,10 @@ function Home() {
   }, []);
 
   // ramdom image
-  const avatarPicture = () => {
-    const num = Math.floor(Math.random() * 300);
-    return `https://rickandmortyapi.com/api/character/avatar/${num}.jpeg`;
-  };
+  // const avatarPicture = () => {
+  //   const num = Math.floor(Math.random() * 300);
+  //   return `https://rickandmortyapi.com/api/character/avatar/${num}.jpeg`;
+  // };
 
   const getDayAndMonth = (date) => {
     const day = date.getDate();
@@ -106,7 +106,7 @@ function Home() {
           {theObject.map((item, index) => (
             <AccessCard
               key={index}
-              image={avatarPicture()}
+              // image={avatarPicture()}
               userName={item.nombres}
               id={item.codigo}
               grade={item.grado}

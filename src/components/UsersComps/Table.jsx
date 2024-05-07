@@ -10,6 +10,7 @@ import {
   Chip,
   Tooltip,
 } from "@nextui-org/react";
+import user from "../../assets/user.svg";
 import { EditIcon } from "./EditIcon";
 import EditPopUp from "./EditPopUp";
 import { DeleteIcon } from "./DeleteIcon";
@@ -85,10 +86,11 @@ export default function UsersTable() {
     }
   };
 
-  const avatarPicture = () => {
-    const num = Math.floor(Math.random() * 300);
-    return `https://rickandmortyapi.com/api/character/avatar/${num}.jpeg`;
-  };
+  // const avatarPicture = () => {
+  //   const num = Math.floor(Math.random() * 300);
+  //   return `https://rickandmortyapi.com/api/character/avatar/${num}.jpeg`;
+  // };
+  const profile = user;
 
   const renderCell = (user, columnKey) => {
     const cellValue = user[columnKey];
@@ -98,7 +100,7 @@ export default function UsersTable() {
       case "nombres":
         return (
           <User
-            avatarProps={{ radius: "full", src: avatarPicture() }}
+            avatarProps={{ radius: "full", src: profile }}
             name={cellValue}
           ></User>
         );
