@@ -1,5 +1,9 @@
+import user from "../../assets/user.svg";
+
 function VerifyCard({ userName, code, career, shift, grade, group, location }) {
-  const photo = "https://rickandmortyapi.com/api/character/avatar/2.jpeg";
+  // const photo = "https://rickandmortyapi.com/api/character/avatar/2.jpeg";
+  const photo = user;
+
   const locationStyles = {
     width: ".8em", 
     height: ".8em",

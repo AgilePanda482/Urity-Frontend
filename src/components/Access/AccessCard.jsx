@@ -1,8 +1,9 @@
 import arrowDown from "../../assets/arrowDown.svg";
 import arrowUp from "../../assets/arrowUp.svg";
+import user from "../../assets/user.svg";
 
 function AccessCard({
-  image,
+  // image,
   userName,
   id,
   grade,
@@ -13,6 +14,7 @@ function AccessCard({
   time,
 }) {
   const arrow = status === 1 ? arrowUp : arrowDown;
+  const image = user;
 
   return (
     // CARD CONTAINER
@@ -37,9 +39,13 @@ function AccessCard({
       >
         <div
           style={{
-            height: "100%",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "auto",
             borderRadius: "50%",
             overflow: "hidden",
+            backgroundColor: "#ffffff",
           }}
         >
           <img src={image} alt="" />
